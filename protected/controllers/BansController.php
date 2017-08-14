@@ -1,13 +1,10 @@
-<?php
-/**
- * Контррллер банов
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -38,14 +35,14 @@ class BansController extends Controller
 
 		// Проверка прав
 		if (!Webadmins::checkAccess('bans_unban', $model->admin_nick)) {
-            throw new CHttpException(403, "У Вас недостаточно прав");
+            throw new CHttpException(403, "Нямате достатъчно права");
         }
 
         $model->ban_length = '-1';
 		$model->expired = 1;
 
 		if ($model->save(FALSE)) {
-            Yii::app()->end('Игрок разбанен');
+            Yii::app()->end('Банът е премахнат.');
         }
 
         Yii::app ()->end(CHtml::errorSummary($model));
@@ -67,16 +64,16 @@ class BansController extends Controller
 		// Подгружаем баны
 		$model=Bans::model()->with('admin')->findByPk($id);
 		if ($model === null) {
-            throw new CHttpException(404, 'The requested page does not exist.');
+            throw new CHttpException(404, 'Заявената страница не съществува.');
         }
 		$geo = false;
 		// Проверка прав на просмотр IP
 		$ipaccess = Webadmins::checkAccess('ip_view');
 		if($ipaccess) {
             $geo = array(
-                'city' => 'Н/А',
-                'region' => 'Не определен',
-                'country' => 'Не определен',
+                'city' => 'N/А',
+                'region' => 'Неопределен',
+                'country' => 'Неопределен',
                 'lat' => 0,
                 'lng' => 0,
             );
@@ -167,7 +164,7 @@ class BansController extends Controller
 	{
 		// Проверка прав
 		if (!Webadmins::checkAccess('bans_add')) {
-            throw new CHttpException(403, "У Вас недостаточно прав");
+            throw new CHttpException(403, "Нямате достатъчно права");
         }
 
         $model=new Bans;
@@ -178,7 +175,7 @@ class BansController extends Controller
 		if(isset($_POST['Bans'])) {
 			$model->attributes=$_POST['Bans'];
 			$model->admin_nick = 'Web';
-			$model->server_name = 'Забанен с сайта';
+			$model->server_name = 'Баннат през сайта';
 			if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->bid));
             }
@@ -199,7 +196,7 @@ class BansController extends Controller
 
 		// Проверка прав
 		if (!Webadmins::checkAccess('bans_edit', $model->admin_nick)) {
-            throw new CHttpException(403, "У Вас недостаточно прав");
+            throw new CHttpException(403, "Нямате достатъчно права");
         }
 
         // Аякс проверка формы
@@ -231,7 +228,7 @@ class BansController extends Controller
 
 		// Проверка прав
 		if (!Webadmins::checkAccess('bans_delete', $model->admin_nick)) {
-            throw new CHttpException(403, "У Вас недостаточно прав");
+            throw new CHttpException(403, "Нямате достатъчно права");
         }
 
         $model->delete();
@@ -248,11 +245,11 @@ class BansController extends Controller
 	{
 		if(Yii::app()->request->isAjaxRequest && isset($_POST['server'])) {
 			if($_POST['server'] == 0) {
-				Yii::app()->end('$("#Bans_admin_nick").html("<option value=\"0\">Не выбрано</option>");');
+				Yii::app()->end('$("#Bans_admin_nick").html("<option value=\"0\">Не е избрано</option>");');
 			}
 			$amxadmins = Amxadmins::model()->with('servers')->findAll('`address` = :addr', array(':addr' => $_POST['server']));
 
-			$js = "<option>Любой админ</option>";
+			$js = "<option>Админ ник</option>";
 			foreach($amxadmins as $admin) {
 				$js .= "<option value=\"{$admin->steamid}\">{$admin->nickname}</option>";
 			}
@@ -304,7 +301,7 @@ class BansController extends Controller
 	public function actionAdmin()
 	{
 		if (Yii::app()->user->isGuest) {
-            throw new CHttpException(403, "У Вас недостаточно прав");
+            throw new CHttpException(403, "Нямате достатъчно права");
         }
 
         $model=new Bans('search');
@@ -328,21 +325,21 @@ class BansController extends Controller
 			$model = Bans::model()->with('admin')->findByPk($_POST['bid']);
 			if($model === null)
 			{
-				Yii::app()->end('alert("Ошибка!")');
+				Yii::app()->end('alert("Грешка")');
 			}
 			$js = "$('#bandetail-nick').html('" .  CHtml::encode($model->player_nick) . "');";
 			$js .= "$('#bandetail-steam').html('" . $model->player_id . "');";
 			$js .= "$('#bandetail-steamcommynity').html('" . Prefs::steam_convert($model->player_id, true) . "');";
-			$js .= "$('#bandetail-ip').html('" . (Webadmins::checkAccess('ip_view') ? $model->player_ip : 'Cкрыт') . "');";
+			$js .= "$('#bandetail-ip').html('" . (Webadmins::checkAccess('ip_view') ? $model->player_ip : 'Скрито') . "');";
 			$js .= "$('#bandetail-type').html('" . Prefs::getBanType($model->ban_type) . "');";
 			$js .= "$('#bandetail-reason').html('" . $model->ban_reason . "');";
 			$js .= "$('#bandetail-datetime').html('" . date('d.m.y - H:i:s',$model->ban_created) . "');";
 			$js .= "$('#bandetail-expired').html('" . ($model->ban_length == '-1'
 					?
-				'Разбанен'
+				'Ънбаннат'
 					:
 				Prefs::date2word($model->ban_length) .
-				($model->expired == 1 ? ' (истек)' : '')) . "');";
+				($model->expired == 1 ? ' (изтекъл)' : '')) . "');";
 			$js .= "$('#bandetail-admin').html('" . $model->adminName . "');";
 			$js .= "$('#bandetail-server').html('" . CHtml::encode($model->server_name) . "');";
 			$js .= "$('#bandetail-kicks').html('" . $model->ban_kicks . "');";
@@ -379,7 +376,7 @@ class BansController extends Controller
 	{
 		$model=Bans::model()->findByPk($id);
 		if ($model === null) {
-            throw new CHttpException(404, 'The requested page does not exist.');
+            throw new CHttpException(404, 'Заявената страница не съществува.');
         }
         return $model;
 	}

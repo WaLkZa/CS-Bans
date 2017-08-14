@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер админов серверов
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -28,19 +25,19 @@ class AmxadminsController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('amxadmins_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$this->layout = '//layouts/main';
 
 		// Сохранение параметров админа
 		if(Yii::app()->request->isAjaxRequest && isset($_POST['sid']) && isset($_POST['aid'])) {
 
-			$exit = "alert('Ошибка');";
+			$exit = "alert('Грешка');";
 
 			if(isset($_POST['active'])) {
 
 				if(!empty($_POST['customflags']) && !preg_match('#^([a-z]+)$#', $_POST['customflags']))
-					Yii::app()->end("alert('Ошибка!В флаги нужно прописывать только буквы латинского алфавита');");
+					Yii::app()->end("alert('Грешка! Флаговете могат да бъдат само на латиница');");
 
 				$adm = AdminsServers::model()->findByAttributes(array(
 					'admin_id' => $_POST['aid'],
@@ -57,7 +54,7 @@ class AmxadminsController extends Controller
 				$adm->use_static_bantime = $_POST['staticbantime'];
 
 				if($adm->save()) {
-					$exit = "alert('Сохранено');";
+					$exit = "alert('Запазено');";
 				}
 			}
 			else {
@@ -72,7 +69,7 @@ class AmxadminsController extends Controller
 				if($res)
 				{
 					$hash = crc32($admin->steamid);
-					$exit = "alert('Удалено'); $('.input{$hash}').hide();";
+					$exit = "alert('Изтрито'); $('.input{$hash}').hide();";
 				}
 			}
 
@@ -87,7 +84,7 @@ class AmxadminsController extends Controller
 			$server = Serverinfo::model()->findByPk($sid);
 
 			// Шапка таблицы с админами
-			$js = "<table class=\"table table-bordered table-stripped\"><thead><tr class=\"info\"><th colspan=5>{$server->hostname}</th></tr></tr><tr><th>Ник</th><th>Steam/IP/Ник</th><th>Доп. флаги</th><th>Установленное время бана</th><th>Вкл</th><th>Сохранить</th></thead><tbody>";
+			$js = "<table class=\"table table-bordered table-stripped\"><thead><tr class=\"info\"><th colspan=5>{$server->hostname}</th></tr></tr><tr><th>Ник</th><th>Steam/IP/Ник</th><th>Доп. флагове</th><th>Зададено време на бана</th><th>Вкл</th><th>Запази</th></thead><tbody>";
 
 			foreach($admins as $admin)
 			{
@@ -126,7 +123,7 @@ class AmxadminsController extends Controller
 				$staticbantime = CHtml::dropDownList(
 					'staticbantime',
 					$name2,
-					array('no' => 'Нет', 'yes' => 'Да'),
+					array('no' => 'Не', 'yes' => 'Да'),
 					array(
 						'class' => 'input' . $admin->id,
 						'style' => $display
@@ -140,7 +137,7 @@ class AmxadminsController extends Controller
 						//'onclick' => '$.post("", $("#form' . $admin->id . '").serialize(), function(data){ eval(data); }); return false;',
 						'onclick' => '$.post("", $("#tr' . $admin->id . ' input, #tr' . $admin->id . ' select").serialize(), function(data){ eval(data); }); return false;',
 						'rel' => 'tooltip',
-						'title' => 'Сохранить'
+						'title' => 'Запази'
 					)
 				);
 
@@ -183,7 +180,7 @@ class AmxadminsController extends Controller
 		{
 			// Проверка прав
 			if(!Webadmins::checkAccess('amxadmins_edit'))
-				throw new CHttpException(403, "У Вас недостаточно прав");
+				throw new CHttpException(403, "Нямате достатъчно права");
 
 			$model = $this->loadmodel($id);
 			$this->render('view', array('model' => $model));
@@ -193,7 +190,7 @@ class AmxadminsController extends Controller
 		$model = Amxadmins::model()->with('servers')->findByPk($_POST['aid']);
 		if($model === null)
 		{
-			Yii::app()->end("alert('Ошибка!')");
+			Yii::app()->end("alert('Грешка!')");
 		}
 
 		$steam = '';
@@ -210,7 +207,7 @@ class AmxadminsController extends Controller
 					array(
 						"target" => "_blank",
 						"rel" => "tooltip",
-						"title" => "Просмотреть профиль"
+						"title" => "Виж профила"
 					)
 				);
 			}
@@ -245,22 +242,22 @@ class AmxadminsController extends Controller
 		$info .= "<td><b>Ник</b></td>";
 		$info .= "<td>".CHtml::encode($model->nickname)."</td>";
 		$info .= "</tr><tr>";
-		$info .= "<td><b>Контакты</b></td>";
-		$info .= "<td>" . ($model->icq ? CHtml::image("//icq-rus.com/icq/3/".$model->icq.".gif"). " " . $model->icq : 'Не задан') . "</td>";
+		$info .= "<td><b>Контакти</b></td>";
+		$info .= "<td>" . ($model->icq ? CHtml::image("//icq-rus.com/icq/3/".$model->icq.".gif"). " " . $model->icq : 'Не е зададено') . "</td>";
 		$info .= "</tr><tr>";
-		$info .= "<td><b>Доступ</b></td>";
+		$info .= "<td><b>Достъп</b></td>";
 		$info .= "<td>".$model->access."</td>";
 		$info .= "</tr><tr>";
-		$info .= "<td><b>Добавлен</b></td>";
+		$info .= "<td><b>Добавен</b></td>";
 		$info .= "<td>".date("d.m.Y - H:i:s", $model->created)."</td>";
 		$info .= "</tr><tr>";
-		$info .= "<td><b>Истекает</b></td>";
-		$info .= "<td>" . ($model->expired != 0 ? date("d.m.Y - H:i:s", $model->expired) : "Никогда") . "</td>";
+		$info .= "<td><b>Изтича</b></td>";
+		$info .= "<td>" . ($model->expired != 0 ? date("d.m.Y - H:i:s", $model->expired) : "Никога") . "</td>";
 		$info .= "</tr>";
 		$info .= "</table>";
 		$js  = "$('#adminInfo').html('".$info."');";
-		$js .= "$('#adminSteam').html('".($steam ? $steam : '<i>Информация отсутствует</i>')."');";
-		$js .= "$('#adminServers').html('".($model->servers ? $servers : '<i>Информация отсутствует</i>')."');";
+		$js .= "$('#adminSteam').html('".($steam ? $steam : '<i>Няма информация</i>')."');";
+		$js .= "$('#adminServers').html('".($model->servers ? $servers : '<i>Няма информация</i>')."');";
 		$js .= "$('#loading').hide();";
 		$js .= "$('#adminDetail').modal('show');";
 		// Выводим инфу
@@ -273,7 +270,7 @@ class AmxadminsController extends Controller
 	public function actionCreate()
 	{
 		if(!Webadmins::checkAccess('amxadmins_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$model=new Amxadmins;
 
@@ -308,7 +305,7 @@ class AmxadminsController extends Controller
 	public function actionUpdate($id)
 	{
 		if(!Webadmins::checkAccess('amxadmins_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$model=$this->loadModel($id);
 
@@ -334,7 +331,7 @@ class AmxadminsController extends Controller
 	public function actionDelete($id)
 	{
 		if(!Webadmins::checkAccess('amxadmins_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$this->loadModel($id)->delete();
 
@@ -377,7 +374,7 @@ class AmxadminsController extends Controller
 	public function actionAdmin()
 	{
 		if(!Webadmins::checkAccess('amxadmins_view'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$model=new Amxadmins('search');
 		$model->unsetAttributes();
@@ -398,7 +395,7 @@ class AmxadminsController extends Controller
 	{
 		$model=Amxadmins::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Заявената страница не съществува.');
 		return $model;
 	}
 

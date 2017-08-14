@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер админцентра
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -41,7 +38,7 @@ class AdminController   extends Controller
 	{
 		// Проверка прав
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		// Задаем лайоут
 		$this->layout = '//layouts/column2';
@@ -59,7 +56,7 @@ class AdminController   extends Controller
 
 			$js = CHtml::form('', 'post', array('id' => 'form' . $gid));
 
-			$js .= "<table class=\"table table-bordered table-condensed\"><thead><tr><th colspan=3 style=\"vertical-align: middle\">Название группы ".CHtml::textField('groupname', $group->setname)."</th></tr><tr><th>Причина</th><th>Срок бана</th><th>Действия</th></thead><tbody>";
+			$js .= "<table class=\"table table-bordered table-condensed\"><thead><tr><th colspan=3 style=\"vertical-align: middle\">Име на групата ".CHtml::textField('groupname', $group->setname)."</th></tr><tr><th>Причина</th><th>Продължителност на бана</th><th>Действия</th></thead><tbody>";
 
 			foreach ($reasons as $reason)
 			{
@@ -83,12 +80,12 @@ class AdminController   extends Controller
 
 			$js .= "<tr><td colspan=3 style=\"text-align: center\">";
 			$js .= CHtml::hiddenField('gid', $gid);
-			$js .= CHtml::button('Сохранить', array('class' => 'btn btn-primary save','onclick' => '$.post(\'\', $(\'#form'.$gid.'\').serialize(), function(data){eval(data);});'));
+			$js .= CHtml::button('Запази', array('class' => 'btn btn-primary save','onclick' => '$.post(\'\', $(\'#form'.$gid.'\').serialize(), function(data){eval(data);});'));
 			$js .= "</td></tr>";
 			$js .= "</tbody></table>";
 			$js .= CHtml::endForm();
 
-			Yii::app()->end("$('#loading').hide();$('.modal-header').html('<h2>Причины банов для группы \"{$group->setname}\"</h2>');$('.modal-body').html('{$js}');$('#reasons-modal').modal('show');");
+			Yii::app()->end("$('#loading').hide();$('.modal-header').html('<h2>Причини за бан по групи\"{$group->setname}\"</h2>');$('.modal-body').html('{$js}');$('#reasons-modal').modal('show');");
 		}
 
 		// Сохранение деталей группы
@@ -97,17 +94,17 @@ class AdminController   extends Controller
 			//Yii::app()->end($_POST['gid']);
 			// Если не выбрали причины
 			if(empty($_POST['active']))
-				Yii::app()->end("alert('Выберите причины!');");
+				Yii::app()->end("alert('Въведете причина');");
 
 			// Если не введено название группы
 			if(empty($_POST['groupname']))
-				Yii::app()->end("alert('Введите название группы!');");
+				Yii::app()->end("alert('Въведете име на групата');");
 
 			// Ищем группу
 			$set = ReasonsSet::model()->findByPk($_POST['gid']);
 			// Если группы нет, возвращаем ошибку
 			if($set === NULL)
-				Yii::app()->end("alert('Ошибка! Группа причин под ID ".intval($_POST['gid'])." не найдена');");
+				Yii::app()->end("alert('Грешка! Въведената причина за група ID ".intval($_POST['gid'])." е невалидна');");
 
 			// Если изменено название группы, то обновляем в базе и на странице
 			$other = "";
@@ -133,7 +130,7 @@ class AdminController   extends Controller
 					$rts->unsetAttributes();
 			}
 
-			Yii::app()->end($other . "$('#reasons-modal').modal('hide');alert('Сохранено!');");
+			Yii::app()->end($other . "$('#reasons-modal').modal('hide');alert('Запазено!');");
 		}
 
 		$this->render('reasons', array(
@@ -149,19 +146,19 @@ class AdminController   extends Controller
 	public function actionActions()
 	{
 		if(!Webadmins::checkAccess('prune_db'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		switch ($_POST['action'])
 		{
 			case 'truncatebans':
 				Yii::app()->db->createCommand()->truncateTable('{{bans}}');
-				Yii::app()->end("$('#loading').hide();alert('Таблица банов успешно очищена');");
+				Yii::app()->end("$('#loading').hide();alert('Таблицата с банове е почистена успешно');");
 
 			case 'clearcache':
 				$dir = ROOTPATH."/assets";
 				self::removeDirRec($dir);
 				Yii::app()->cache->flush();
-				Yii::app()->end("$('#loading').hide();alert('Кэш очищен');");
+				Yii::app()->end("$('#loading').hide();alert('Кеша е почистен');");
 
 			case 'optimizedb':
 				$query = Yii::app()->db->createCommand("SHOW TABLES FROM `" . Yii::app()->params['dbname']. "` LIKE '".Yii::app()->db->tablePrefix."%'")->queryAll();
@@ -171,7 +168,7 @@ class AdminController   extends Controller
 						$tables.=($tables != "" ? "," : "")."`".$val."`";
 				}
 				$optimize = Yii::app()->db->createCommand("OPTIMIZE TABLES ".$tables)->query();
-				$alert = $optimize ? "База оптимизирована" : "Ошибка оптимизации";
+				$alert = $optimize ? "Базата беше оптимизирана" : "Грешка при оптимизацията!";
 				Yii::app()->end("$('#loading').hide();alert('". $alert."');");
 
 			case 'optimizebanstable':
@@ -217,7 +214,7 @@ class AdminController   extends Controller
 	public function actionAddbanonline()
 	{
 		if(!Webadmins::checkAccess('bans_add'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		if(isset($_POST['sid']) && Yii::app()->request->isAjaxRequest)
 		{
@@ -230,9 +227,9 @@ class AdminController   extends Controller
 			$js = "";
 
 			if(!$info['players'])
-				$js .= "<tr class=\"error\"><td colspan=\"7\">Нет игроков</td></tr>";
+				$js .= "<tr class=\"error\"><td colspan=\"7\">Няма играчи</td></tr>";
 			elseif(!$players = $server->getPlayersInfo())
-				$js .= "<tr class=\"error\"><td colspan=\"7\">Ошибка получения информации (проверьте RCON пароль)</td></tr>";
+				$js .= "<tr class=\"error\"><td colspan=\"7\">Грешка при получаването на информацията (проверете RCON паролата)</td></tr>";
 			else {
 				foreach($players as $key => $player)
 				{
@@ -252,7 +249,7 @@ class AdminController   extends Controller
 						array(
 							"onclick" => "playeraction('ban', ".intval($player['userid']).", {$sid})",
 							"rel" => "tooltip",
-							"title" => "Забанить"
+							"title" => "Забрани"
 						)
 					);
 					$js .= "&nbsp";
@@ -264,7 +261,7 @@ class AdminController   extends Controller
 						array(
 							"onclick" => "playeraction('kick', ".intval($player['userid']).", {$sid})",
 							"rel" => "tooltip",
-							"title" => "Кикнуть"
+							"title" => "Кикни"
 						)
 					);
 					$js .= "</td>";
@@ -288,7 +285,7 @@ class AdminController   extends Controller
     {
 		// Если гость, выдаем эксепшн
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, 'У Вас недостаточно прав');
+			throw new CHttpException(403, 'Нямате достатъчно права');
 
         $this->render(
 			'index',
@@ -314,7 +311,7 @@ class AdminController   extends Controller
     public function actionServers()
     {
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, 'У Вас недостаточно прав');
+			throw new CHttpException(403, 'Нямате достатъчно права');
 
 		$model=new Serverinfo('search');
 		$model->unsetAttributes();
@@ -340,7 +337,7 @@ class AdminController   extends Controller
 	{
 		// Проверяем права пользователя
 		if(!Webadmins::checkAccess('websettings_view'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		// Вытаскиваем модель
 		$model =  Webconfig::getCfg();
@@ -356,7 +353,7 @@ class AdminController   extends Controller
 		if(isset($_POST['Webconfig']))
 		{
 			if(!Webadmins::checkAccess('websettings_edit'))
-				throw new CHttpException(403, "У Вас недостаточно прав");
+				throw new CHttpException(403, "Нямате достатъчно права");
 
 			$model->attributes=$_POST['Webconfig'];
 			if($model->save())

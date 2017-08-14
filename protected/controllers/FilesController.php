@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер файлов
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -27,7 +24,7 @@ class FilesController extends Controller
 	public function actionUpdate($id)
 	{
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 		
 		$model=$this->loadModel($id);
 
@@ -48,7 +45,7 @@ class FilesController extends Controller
 	public function actionDelete($id)
 	{
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 		$this->loadModel($id)->delete();
 
 		if(!isset($_GET['ajax']))
@@ -68,7 +65,7 @@ class FilesController extends Controller
 		$file_local = Yii::getPathOfAlias('webroot.include.files') . DIRECTORY_SEPARATOR . $file->demo_file;
 		if(!is_file($file_local))
 		{
-			throw new CHttpException(404, 'Файл не найден. Обратитесь к администратору');
+			throw new CHttpException(404, 'Файлът не е намерен. Свържете се с администратора');
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
 
@@ -82,7 +79,7 @@ class FilesController extends Controller
 	{
 		$model=Files::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Заявената страница не съществува.');
 		return $model;
 	}
 

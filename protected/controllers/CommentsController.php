@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер комментариев
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -25,7 +22,7 @@ class CommentsController extends Controller
 	public function actionUpdate($id, $bid = NULL)
 	{
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 		$model=$this->loadModel($id);
 
 		// $this->performAjaxValidation($model);
@@ -49,7 +46,7 @@ class CommentsController extends Controller
 	public function actionDelete($id)
 	{
 		if(Yii::app()->user->isGuest)
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 		if($this->loadModel($id)->delete())
 			Yii::app()->end("$('#{$id}').remove();");
 
@@ -70,7 +67,7 @@ class CommentsController extends Controller
 	{
 		$model=Comments::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Заявената страница не съществува.');
 		return $model;
 	}
 

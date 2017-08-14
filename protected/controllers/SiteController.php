@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер сайта
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -33,9 +30,9 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		// Вытаскиваем 10 последних банов
-		$dependecy = new CDbCacheDependency('SELECT MAX(`bid`) FROM {{bans}}');
+		$dependency = new CDbCacheDependency('SELECT MAX(`bid`) FROM {{bans}}');
 
-		$bans = new CActiveDataProvider(Bans::model()->cache(300, $dependecy), array(
+		$bans = new CActiveDataProvider(Bans::model()->cache(300, $dependency), array(
 			'criteria' => array(
 				'condition' => Yii::app()->config->auto_prune ? 'expired = 0' : null,
 				'order' => 'bid DESC',
@@ -105,7 +102,7 @@ class SiteController extends Controller
 	public function actionInstall() {
 
 		if(Yii::app()->db->username) {
-			throw new CHttpException(404, 'Система уже установлена');
+			throw new CHttpException(404, 'Системата е вече инсталирана!');
 		}
 
 		define('NOREDIRECT', TRUE);
@@ -145,41 +142,41 @@ class SiteController extends Controller
 				Yii::app()->end('<span class="text-error">'.$conn.'</span>');
 			}
 
-			Yii::app()->end('<span class="text-success">Соединение установлено</span>');
+			Yii::app()->end('<span class="text-success">Връзката е установена</span>');
 		}
 
 		$error = array();
 
 		// Проверка требований
 		if (version_compare(PHP_VERSION, $minPhp, '<')) {
-			$error[] = 'Вы используете PHP версию ниже рекомендуемой';
+			$error[] = 'Използвате по-стара PHP версия от препоръчителната';
 		}
 
 		foreach($testFunc AS $func) {
 			if(!function_exists($func) || in_array($func, $disFunc)) {
-				$error[] = "Недоступна функция {$func}";
+				$error[] = "Недостъпна функция {$func}";
 			}
 		}
 
 		foreach($testExt AS $ext) {
 			if(!extension_loaded($ext)) {
-				$error[] = "Недоступно расширение {$ext}";
+				$error[] = "Недостъпно разширение {$ext}";
 			}
 		}
 
 		if(!is_writable($confFile)) {
 			if(!chmod($confFile, 0666)) {
-				$error[] = 'Недостаточно прав для записи в конфиг';
+				$error[] = 'Нямате достатъчно права, за да пишете по configs';
 			}
 		}
 		if(!is_writable($assetDir)) {
 			if(!chmod($assetDir, 0777)) {
-				exit('Недостаточно прав для записи в папку /assets');
+				exit('Нямате достатъчно права за да пишете в папката /assets');
 			}
 		}
 		if(!is_writable($runtimeDir)) {
 			if(!chmod($runtimeDir, 0777)) {
-				exit('Недостаточно прав для записи в папку /protected/runtime');
+				exit('Нямате достатъчно права за да пишете в папката /protected/runtime');
 			}
 		}
 
@@ -219,7 +216,7 @@ class SiteController extends Controller
 
 		if($info[0]['start_page'] === '/site/index') {
 
-			throw new CHttpException(404, 'Нет обновлений');
+			throw new CHttpException(404, 'Не е обновена');
 		}
 
 		if(isset($_POST['license'])) {
@@ -241,7 +238,7 @@ class SiteController extends Controller
 			catch(Exception $e) {
 				$this->render('/site/error', array(
 					'code' => '',
-					'message' => 'Произошла ошибка: ' . $e->getMessage(),
+					'message' => 'Изникна грешка: ' . $e->getMessage(),
 				));
 				Yii::app()->end();
 			}

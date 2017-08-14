@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер серверов
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -28,7 +25,7 @@ class ServerinfoController extends Controller
 	public function actionSendcommand($id)
 	{
 		if(!Webadmins::checkAccess('servers_edit'))
-			throw new CHttpException(403, 'У Вас недостаточно прав');
+			throw new CHttpException(403, 'Нямате достатъчно права');
 
 		if(isset($_POST['command']))
 		{
@@ -37,13 +34,13 @@ class ServerinfoController extends Controller
 			$response = $server->RconCommand(CHtml::encode($_POST['command']));
 
 			if($_POST['command'] == 'amx_reloadadmins' && $server->RconCommand('echo Hi') === 'Hi')
-				$response = 'Список админов обновлен';
+				$response = 'Списъка с админите е обновен';
 
 			if($response)
 				$return = CHtml::encode ($response);
 
 			else
-				$return = 'Ошибка отправки команды';
+				$return = 'Грешка при изпращане на командата';
 
 			Yii::app()->end(CHtml::encode($response));
 		}
@@ -75,11 +72,11 @@ class ServerinfoController extends Controller
 	public function actionContext($id)
 	{
 		if(!Webadmins::checkAccess('servers_edit'))
-			throw new CHttpException(403, 'У Вас недостаточно прав');
+			throw new CHttpException(403, 'Нямате достатъчно права');
 
 		// Проверяем права
 		if(!Webadmins::checkAccess('bans_add'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		// Проверочки
 		$action = CHtml::encode($_POST['action']);
@@ -96,7 +93,7 @@ class ServerinfoController extends Controller
 				break;
 			case 'message':
 				if(!preg_match('#^[\w ]+$#i', $reason))
-					Yii::app()->end("$('#loading').hide();alert('Только латинские символы и цифры');");
+					Yii::app()->end("$('#loading').hide();alert('Само латински букви и цифри');");
 				$command = 'amx_psay "' . $player . '" "' . $reason . '"';
 				break;
 		}
@@ -104,10 +101,10 @@ class ServerinfoController extends Controller
 		$server = Serverinfo::model()->findByPk(intval($id));
 		$return = $server->RconCommand($command);
 		if($server->RconCommand($command))
-			$return = 'Команда отправлена успешно';
+			$return = 'Командата е изпратена успешно';
 
 		else
-			$return = 'Ошибка отправки команды';
+			$return = 'Грешка при изпращане на командата';
 
 		Yii::app()->end("$('#loading').hide();alert('$return');");
 	}
@@ -134,7 +131,7 @@ class ServerinfoController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('servers_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$model=new Serverinfo;
 
@@ -160,7 +157,7 @@ class ServerinfoController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('servers_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$this->layout = '//layouts/column2';
 		$model=$this->loadModel($id);
@@ -188,7 +185,7 @@ class ServerinfoController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('servers_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		$this->loadModel($id)->delete();
 
@@ -230,7 +227,7 @@ class ServerinfoController extends Controller
 	public function actionAdmin()
 	{
 		if(!Webadmins::checkAccess('servers_edit'))
-			throw new CHttpException(403, 'У Вас недостаточно прав');
+			throw new CHttpException(403, 'Нямате достатъчно права');
 
 		$model=new Serverinfo('search');
 		$model->unsetAttributes();
@@ -246,7 +243,7 @@ class ServerinfoController extends Controller
 	{
 		$model=Serverinfo::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'Запрошенная страница не существует.');
+			throw new CHttpException(404,'Заявената страница не съществува');
 		return $model;
 	}
 
@@ -263,13 +260,13 @@ class ServerinfoController extends Controller
 		$players = "";
 		if (empty($info['playersinfo']) || !is_array($info['playersinfo'])) {
 			$players .= "<table class=\"items table table-bordered table-condensed\">";
-			$players .= "<tr class=\"odd\"><td width=\"100%\" style=\"text-align:center\">Нет игроков</td></tr></table>";
+			$players .= "<tr class=\"odd\"><td width=\"100%\" style=\"text-align:center\">Няма играчи</td></tr></table>";
 		} else {
 			$players .= "<table class=\"items table table-bordered table-condensed\">";
 			$players .= "<tr class=\"odd\">";
 			$players .= "<td width=\"70%\"><b>Ник</b></td>";
-			$players .= "<td><b>Счёт</b></td>";
-			$players .= "<td><b>Время</b></td>";
+			$players .= "<td><b>Резултат</b></td>";
+			$players .= "<td><b>Време</b></td>";
 
 			foreach ($info['playersinfo'] as $player_key => $player) {
 				$players .= "<tr class=\"odd\">";

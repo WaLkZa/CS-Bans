@@ -1,13 +1,10 @@
-<?php
-/**
- * Контроллер системного лога
- */
+﻿<?php
 
 /**
  * @author Craft-Soft Team
  * @package CS:Bans
  * @version 1.0 beta
- * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.
+ * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.
  * @link http://craft-soft.ru/
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
@@ -26,7 +23,7 @@ class LogsController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('websettings_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
@@ -37,7 +34,7 @@ class LogsController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('websettings_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 
 		if(Yii::app()->request->isPostRequest)
 		{
@@ -53,7 +50,7 @@ class LogsController extends Controller
 	{
 		// Проверка прав
 		if(!Webadmins::checkAccess('websettings_edit'))
-			throw new CHttpException(403, "У Вас недостаточно прав");
+			throw new CHttpException(403, "Нямате достатъчно права");
 		
 		$model=new Logs('search');
 		$model->unsetAttributes();
@@ -76,7 +73,7 @@ class LogsController extends Controller
 	{
 		$model=Logs::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Заявената страница не съществува');
 		return $model;
 	}
 
