@@ -1,17 +1,17 @@
 CS-Bans
 =======
 
-Система управления банами и админами для игровых серверов Counter Strike 1.6
+CS:Bans - Система за Counter Strike 1.6 сървъри за контрол на банове и админи преведена на български език
 
-Системные требования
+Системни изисквания
 --------------------
 
-PHP версии 5.3 и выше.
+PHP 5.3 версия или по-нова.
 
-Расширения PHP: PDO, PDO-mysql, mbstring и gd.
+PHP разширения: PDO, PDO-mysql, mbstring и gd.
 
-Функции PHP: chmod, mkdir, copy
+PHP функции: chmod, mkdir, copy
 
-Включенный mod_rewrite
+Включен mod_rewrite
 
-MySQL версии 5.0 и выше.
+MySQL 5.0 версия или по-нова.
