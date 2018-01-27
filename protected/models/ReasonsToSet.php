@@ -45,7 +45,7 @@ class ReasonsToSet extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'setid' => 'Группа',
+			'setid' => 'Група',
 			'reasonid' => 'Причина',
 		);
 	}

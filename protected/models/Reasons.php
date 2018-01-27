@@ -49,7 +49,7 @@ class Reasons extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'reason' => 'Причина',
-			'static_bantime' => 'Срок бана',
+			'static_bantime' => 'Време на бана',
 		);
 	}
 
@@ -75,21 +75,21 @@ class Reasons extends CActiveRecord
 		}
 
 		if($addban)
-			$list['selfreason'] = 'Другая причина';
+			$list['selfreason'] = 'Друга причина';
 
 		return $list;
 	}
 	
 	public function afterSave() {
 		if($this->isNewRecord)
-			Syslog::add(Logs::LOG_ADDED, 'Добавлена причина банов <strong>' . $this->reason . '</strong>');
+			Syslog::add(Logs::LOG_ADDED, 'Добавена е бан причина <strong>' . $this->reason . '</strong>');
 		else
-			Syslog::add(Logs::LOG_EDITED, 'Изменена причина банов <strong>' . $this->reason . '</strong>');
+			Syslog::add(Logs::LOG_EDITED, 'Променена е бан причина <strong>' . $this->reason . '</strong>');
 		return parent::afterSave();
 	}
 	
 	public function afterDelete() {
-		Syslog::add(Logs::LOG_DELETED, 'Удалена причина банов <strong>' . $this->reason . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрита е бан причина <strong>' . $this->reason . '</strong>');
 		return parent::afterDelete();
 	}
 

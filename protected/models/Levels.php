@@ -60,23 +60,23 @@ class Levels extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'level' => 'Уровень',
-			'bans_add' => 'Добавить бан',
-			'bans_edit' => 'Изменять бан',
-			'bans_delete' => 'Удалять бан',
-			'bans_unban' => 'Разбан',
-			'bans_import' => 'Импорт банов',
-			'bans_export' => 'Экспорт банов',
-			'amxadmins_view' => 'Просмотр AMX админов',
-			'amxadmins_edit' => 'Редактирование AMX админов',
-			'webadmins_view' => 'Просмотр WEB админов',
-			'webadmins_edit' => 'Редактирование WEB админов',
-			'websettings_view' => 'Просмотр настроек',
-			'websettings_edit' => 'Редактирование настроек',
-			'permissions_edit' => 'Редактирование WEB прав',
-			'prune_db' => 'Оптимизация БД',
-			'servers_edit' => 'Редактирование серверов',
-			'ip_view' => 'Просмотр IP',
+			'level' => 'Ниво',
+			'bans_add' => 'Добавяне на бан',
+			'bans_edit' => 'Промяна на бан',
+			'bans_delete' => 'Изтриване на бан',
+			'bans_unban' => 'Ънбан',
+			'bans_import' => 'Вкарване на бан',
+			'bans_export' => 'Вземане на бан',
+			'amxadmins_view' => 'Преглед на AMX админи',
+			'amxadmins_edit' => 'Редактиране на AMX админи',
+			'webadmins_view' => 'Преглед на уеб админи',
+			'webadmins_edit' => 'Редактиране на уеб админи',
+			'websettings_view' => 'Преглед на настройки',
+			'websettings_edit' => 'Редактиране на настройки',
+			'permissions_edit' => 'Редактиране на уеб права',
+			'prune_db' => 'Оптимизация на БД',
+			'servers_edit' => 'Редактиране на сървъри',
+			'ip_view' => 'Преглед на IP',
 		);
 	}
 
@@ -119,7 +119,7 @@ class Levels extends CActiveRecord
 	{
 		$return = array(
 			'yes' => 'Да',
-			'no' => 'Нет',
+			'no' => 'Не',
 		);
 
 		if($ban)
@@ -144,14 +144,14 @@ class Levels extends CActiveRecord
 
 	public function afterSave() {
 		if($this->isNewRecord)
-			Syslog::add(Logs::LOG_ADDED, 'Добавлен новый уровень веб админов');
+			Syslog::add(Logs::LOG_ADDED, 'Добавено е ново ниво за уеб админи');
 		else
-			Syslog::add(Logs::LOG_EDITED, 'Изменены уровень веб админов № <strong>' . $this->level . '</strong>');
+			Syslog::add(Logs::LOG_EDITED, 'Редактирано ниво за уеб админи № <strong>' . $this->level . '</strong>');
 		return parent::afterSave();
 	}
 
 	public function afterDelete() {
-		Syslog::add(Logs::LOG_DELETED, 'Удален уровень веб админов № <strong>' . $this->level . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрито ниво за уеб админи № <strong>' . $this->level . '</strong>');
 		return parent::afterDelete();
 	}
 }

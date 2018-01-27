@@ -71,9 +71,9 @@ class AdminsServers extends CActiveRecord
 	{
 		return array(
 			'admin_id' => 'Админ',
-			'server_id' => 'Сервер',
-			'custom_flags' => 'Дополнительные флаги',
-			'use_static_bantime' => 'Использовать установленные сроки бана',
+			'server_id' => 'Сървър',
+			'custom_flags' => 'Допълнителни флагове',
+			'use_static_bantime' => 'Възможност за добавяне на срок на бана',
 		);
 	}
 

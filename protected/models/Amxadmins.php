@@ -89,21 +89,21 @@ class Amxadmins extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'username' => 'SteamID',
-			'password' => 'Пароль',
-			'access' => 'Флаги доступа',
-			'accessflags' => 'Флаги доступа',
-			'flags' => 'Тип админки',
+			'password' => 'Парола',
+			'access' => 'Флагове за достъп',
+			'accessflags' => 'Флагове за достъп',
+			'flags' => 'Тип админ',
 			'steamid' => 'Steamid/IP/Ник',
 			'nickname' => 'Ник',
 			'icq' => 'ICQ',
-			'ashow' => 'Показывать в списке админов',
-			'created' => 'Дата добавления',
-			'expired' => 'Истекает',
-			'days' => 'Дней',
-			'long' => 'Осталось дней',
-			'change' => 'Новый срок',
-			'addtake' => 'Выбор',
-			'servers' => 'Назначить на серверах',
+			'ashow' => 'Показване в списъка с админи',
+			'created' => 'Дата на добавяне',
+			'expired' => 'Дата на изтичане',
+			'days' => 'Дни',
+			'long' => 'Оставащи дни',
+			'change' => 'Нов срок',
+			'addtake' => 'Избор',
+			'servers' => 'Добави в сървъра',
 		);
 	}
 
@@ -138,54 +138,54 @@ class Amxadmins extends CActiveRecord
 		if($adminlist)
 		{
 			return array(
-				'a' => 'Иммунитет (не может быть кикнут / забанен и т.д)',
-				'b' => 'Резервирование слотов (может использовать зарезервированные слоты)',
+				'a' => 'Имунитет (не може да бъде кикван/банван и т.н)',
+				'b' => 'Разервиран слот',
 				'c' => 'Команда amx_kick',
 				'd' => 'Команда amx_ban и amx_unban',
 				'e' => 'Команда amx_slay и amx_slap',
 				'f' => 'Команда amx_map',
-				'g' => 'Команда amx_cvar (не все CVAR\'ы доступны)',
+				'g' => 'Команда amx_cvar (не всички кварове ще бъдат достъпни)',
 				'h' => 'Команда amx_cfg',
-				'i' => 'amx_chat и другие команды чата',
-				'j' => 'amx_vote и другие команды голосований (Vote)',
-				'k' => 'Доступ к изменению значения команды sv_password (через команду amx_cvar)',
-				'l' => 'Доступ к amx_rcon и rcon_password (через команду amx_cvar)',
-				'm' => 'Уровень доступа A (для иных плагинов)',
-				'n' => 'Уровень доступа B',
-				'o' => 'Уровень доступа C',
-				'p' => 'Уровень доступа D',
-				'q' => 'Уровень доступа E',
-				'r' => 'Уровень доступа F',
-				's' => 'Уровень доступа G',
-				't' => 'Уровень доступа H',
-				'u' => 'Основной доступ',
-				'z' => 'Игрок (не администратор)'
+				'i' => 'amx_chat и други чат команди',
+				'j' => 'amx_vote и други команди за гласуване',
+				'k' => 'Достъп до sv_password (чрез amx_cvar командата)',
+				'l' => 'Достъп до amx_rcon и rcon_password (чрез amx_cvar командата)',
+				'm' => 'Персонално ниво на достъп A (за допълнителни плъгини)',
+				'n' => 'Персонално ниво на достъп B',
+				'o' => 'Персонално ниво на достъп C',
+				'p' => 'Персонално ниво на достъп D',
+				'q' => 'Персонално ниво на достъп E',
+				'r' => 'Персонално ниво на достъп F',
+				's' => 'Персонално ниво на достъп G',
+				't' => 'Персонално ниво на достъп H',
+				'u' => 'Достъп до админ менюто',
+				'z' => 'Обикновен потребител (без администраторски права)'
 			);
 		}
 
 		return array(
-			'a' => '[a] Иммунитет (не может быть кикнут / забанен и т.д)',
-			'b' => '[b] Резервирование слотов (может использовать зарезервированные слоты)',
+			'a' => '[a] Имунитет (не може да бъде кикван/банван и т.н)',
+			'b' => '[b] Разервиран слот',
 			'c' => '[c] Команда amx_kick',
 			'd' => '[d] Команда amx_ban и amx_unban',
 			'e' => '[e] Команда amx_slay и amx_slap',
 			'f' => '[f] Команда amx_map',
-			'g' => '[g] Команда amx_cvar (не все CVAR\'ы доступны)',
+			'g' => '[g] Команда amx_cvar (не всички кварове ще бъдат достъпни)',
 			'h' => '[h] Команда amx_cfg',
-			'i' => '[i] amx_chat и другие команды чата',
-			'j' => '[j] amx_vote и другие команды голосований (Vote)',
-			'k' => '[k] Доступ к изменению значения команды sv_password (через команду amx_cvar)',
-			'l' => '[l] Доступ к amx_rcon и rcon_password (через команду amx_cvar)',
-			'm' => '[m] Уровень доступа A (для иных плагинов)',
-			'n' => '[n] Уровень доступа B',
-			'o' => '[o] Уровень доступа C',
-			'p' => '[p] Уровень доступа D',
-			'q' => '[q] Уровень доступа E',
-			'r' => '[r] Уровень доступа F',
-			's' => '[s] Уровень доступа G',
-			't' => '[t] Уровень доступа H',
-			'u' => '[u] Основной доступ',
-			'z' => '[z] Игрок (не администратор)'
+			'i' => '[i] amx_chat и други чат команди',
+			'j' => '[j] amx_vote и други команди за гласуване',
+			'k' => '[k] Достъп до sv_password (чрез amx_cvar командата)',
+			'l' => '[l] Достъп до amx_rcon и rcon_password (чрез amx_cvar командата)',
+			'm' => '[m] Персонално ниво на достъп A (за допълнителни плъгини)',
+			'n' => '[n] Персонално ниво на достъп B',
+			'o' => '[o] Персонално ниво на достъп C',
+			'p' => '[p] Персонално ниво на достъп D',
+			'q' => '[q] Персонално ниво на достъп E',
+			'r' => '[r] Персонално ниво на достъп F',
+			's' => '[s] Персонално ниво на достъп G',
+			't' => '[t] Персонално ниво на достъп H',
+			'u' => '[u] Достъп до админ менюто',
+			'z' => '[z] Обикновен потребител (без администраторски права)'
 		);
 	}
 
@@ -254,32 +254,32 @@ class Amxadmins extends CActiveRecord
         }
 
         if (!$this->access) {
-            $this->addError('access', 'Выберите флаги доступа');
+            $this->addError('access', 'Изберете флаговете за достъп');
         }
 
         if($this->isNewRecord && $this->flags === 'a' && !$this->password) {
-            $this->addError('password', 'Для админки по нику нужно обязательно указывать пароль');
+            $this->addError('password', 'За админ по ник задължително трябва да зададете парола');
         }
         
 		if ($this->flags === 'd' && !filter_var($this->steamid, FILTER_VALIDATE_IP, array('flags' => FILTER_FLAG_IPV4))) {
-            $this->addError('steamid', 'Неверно введен IP');
+            $this->addError('steamid', 'Неправилно въведен IP');
         }
 
         if ($this->flags === 'c' && !Prefs::validate_value($this->steamid, 'steamid')) {
-            $this->addError('steamid', 'Неверно введен SteamID');
+            $this->addError('steamid', 'Неправилно въведен SteamID');
         }
 
         if ($this->password && !preg_match('#^([a-z0-9]+)$#i', $this->password)) {
-			$this->addError ('password', 'Пароль может содержать только буквы латинского алфавита и цифры');
+			$this->addError ('password', 'Паролата може да бъде само на латиница');
 		}
         
         if(!$this->isNewRecord && $this->days < $this->change && $this->addtake === '1')
 		{
-			$this->addError ('', 'Ошибка! Нельзя забрать дней больше, чем у него уже есть');
+			$this->addError ('', 'Грешка! Не може да премахнете повече дни от текущите');
 		}
 
         if(empty($this->servers)) {
-            $this->addError ('servers', 'Выберите хотябы один сервер');
+            $this->addError ('servers', 'Изберете поне един сървър');
         }
         
         if($this->hasErrors()) {
@@ -340,16 +340,16 @@ class Amxadmins extends CActiveRecord
 		}
 
 		if ($this->isNewRecord) {
-            Syslog::add(Logs::LOG_ADDED, 'Добавлен новый AmxModX админ <strong>' . $this->nickname . '</strong>');
+            Syslog::add(Logs::LOG_ADDED, 'Добавен е нов AmxModX админ <strong>' . $this->nickname . '</strong>');
         } else {
-            Syslog::add(Logs::LOG_EDITED, 'Изменены детали AmxModX админа <strong>' . $this->nickname . '</strong>');
+            Syslog::add(Logs::LOG_EDITED, 'Промена информация за AmxModX админа <strong>' . $this->nickname . '</strong>');
         }
         return parent::afterSave();
 	}
 
 	public function afterDelete() {
         AdminsServers::model()->deleteAllByAttributes(array('admin_id' => $this->id));
-		Syslog::add(Logs::LOG_DELETED, 'Удален AmxModX админ <strong>' . $this->nickname . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрит е AmxModX админ <strong>' . $this->nickname . '</strong>');
 		return parent::afterDelete();
 	}
 }

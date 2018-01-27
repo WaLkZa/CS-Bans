@@ -119,13 +119,13 @@ class Webadmins extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Логин',
-			'password' => 'Пароль',
-			'level' => 'Уровень',
+			'username' => 'Име',
+			'password' => 'Парола',
+			'level' => 'Ниво',
 			'logcode' => 'Logcode',
-			'email' => 'Email',
-			'last_action' => 'Последнее действие',
-			'try' => 'Попыток',
+			'email' => 'Имейл',
+			'last_action' => 'Последно действие',
+			'try' => 'Опити',
 		);
 	}
 
@@ -180,14 +180,14 @@ class Webadmins extends CActiveRecord
 
 	public function afterSave() {
 		if($this->isNewRecord)
-			Syslog::add(Logs::LOG_ADDED, 'Добавлен новый веб админ <strong>' . $this->username . '</strong>');
+			Syslog::add(Logs::LOG_ADDED, 'Добавен нов уеб админ <strong>' . $this->username . '</strong>');
 		elseif($this->scenario !== 'auth')
-			Syslog::add(Logs::LOG_EDITED, 'Изменены детали веб админа <strong>' . $this->username . '</strong>');
+			Syslog::add(Logs::LOG_EDITED, 'Променени детайли за уеб админ <strong>' . $this->username . '</strong>');
 		return parent::afterSave();
 	}
 
 	public function afterDelete() {
-		Syslog::add(Logs::LOG_DELETED, 'Удален веб админ <strong>' . $this->username . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрит уеб админ <strong>' . $this->username . '</strong>');
 		return parent::afterDelete();
 	}
 }

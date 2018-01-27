@@ -81,26 +81,26 @@ class Webconfig extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'cookie' => 'Причина бана с сайта',
-			'bans_per_page' => 'Элементов на странице',
-			'design' => 'Шаблон',
+			'cookie' => 'Причина за бан през сайта',
+			'bans_per_page' => 'Банове на страница',
+			'design' => 'Дизайн',
 			'banner' => 'Банер',
-			'banner_url' => 'Ссылка баннера',
-			'default_lang' => 'Язык',
-			'start_page' => 'Стартовая страница',
-			'show_comment_count' => 'Показывать кол-во коментариев',
-			'show_demo_count' => 'Показывать кол-во файлов',
-			'show_kick_count' => 'Показывать кол-во киков',
-			'demo_all' => 'Разрешить гостям добавлять демо',
-			'comment_all' => 'Разрешить гостям добавлять коментарии',
-			'use_capture' => 'Отображать город',
-			'max_file_size' => 'Срок бана с сайта (в минутах)',
-			'file_type' => 'Типы файлов',
-			'auto_prune' => 'Скрывать истекшие баны',
-			'max_offences' => 'Максимальное кол-во нарушений',
-			'max_offences_reason' => 'Причина для макс. Нарушений',
-			'use_demo' => 'Разрешить добавлять демо',
-			'use_comment' => 'Разрешить добавлять коммент',
+			'banner_url' => 'Линк към банера',
+			'default_lang' => 'Език',
+			'start_page' => 'Начална страница',
+			'show_comment_count' => 'Показване на броя коментари',
+			'show_demo_count' => 'Показване на броя файлове',
+			'show_kick_count' => 'Показване на броя киквания',
+			'demo_all' => 'Разрешаване на гостите да добавят файлове',
+			'comment_all' => 'Разрешаване на гостите да добавят коментари',
+			'use_capture' => 'Показване на града',
+			'max_file_size' => 'Срок на банове през сайта (в минути)',
+			'file_type' => 'Разширения на файловете',
+			'auto_prune' => 'Скриване на изтеклите банове',
+			'max_offences' => 'Максимален брой нарушения',
+			'max_offences_reason' => 'Причина за максимален брой нарушения',
+			'use_demo' => 'Позволи добавяне на файлове',
+			'use_comment' => 'Позволи добавяне на коментари',
 		);
 	}
 
@@ -135,7 +135,7 @@ class Webconfig extends CActiveRecord
 
 	public function afterSave() {
 		if(!$this->isNewRecord) {
-			Syslog::add(Logs::LOG_EDITED, 'Изменены настройки сайта');
+			Syslog::add(Logs::LOG_EDITED, 'Промени настройки на сайта');
 		}
 
 		Yii::app()->cache->delete('web_cfg');

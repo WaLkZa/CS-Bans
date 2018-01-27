@@ -111,25 +111,25 @@ class Bans extends CActiveRecord
 	{
 		return array(
 			'bid'				=> 'Bid',
-			'player_ip'			=> 'IP игрока',
-			'player_id'			=> 'Steam  игрока',
-			'player_nick'		=> 'Ник игрока',
-			'admin_ip'			=> 'IP админа',
-			'admin_id'			=> 'Steam ID админа',
-			'admin_nick'		=> 'Ник админа',
+			'player_ip'			=> 'IP на играча',
+			'player_id'			=> 'SteamID на играча',
+			'player_nick'		=> 'Ник на играча',
+			'admin_ip'			=> 'IP на админа',
+			'admin_id'			=> 'Steam ID на админа',
+			'admin_nick'		=> 'Ник на админа',
 			'adminName'         => 'Админ',
-			'ban_type'			=> 'Тип бана',
+			'ban_type'			=> 'Тип на бана',
 			'ban_reason'		=> 'Причина',
-			'cs_ban_reason'		=> 'Доп. Причина',
+			'cs_ban_reason'		=> 'Допълнителна причина',
 			'ban_created'		=> 'Дата',
-			'ban_length'		=> 'Срок бана',
-			'server_ip'			=> 'IP сервера',
-			'server_name'		=> 'Название сервера',
-			'ban_kicks'			=> 'Кики',
-			'expired'			=> 'Истек',
-			'imported'			=> 'Импортированный',
-			'city'				=> 'Город',
-			'expiredTime'		=> 'Истекает',
+			'ban_length'		=> 'Продължителност',
+			'server_ip'			=> 'IP на сървъра',
+			'server_name'		=> 'Име на сървъра',
+			'ban_kicks'			=> 'Киквания',
+			'expired'			=> 'Изтекъл',
+			'imported'			=> 'Вкаран',
+			'city'				=> 'Град',
+			'expiredTime'		=> 'Изтекло време',
 		);
 	}
 
@@ -172,36 +172,36 @@ class Bans extends CActiveRecord
 
 	public function afterSave() {
 		if ($this->isNewRecord) {
-            Syslog::add(Logs::LOG_ADDED, 'Добавлен новый бан игрока <strong>' . $this->player_nick . '</strong>');
+            Syslog::add(Logs::LOG_ADDED, 'Добавен нов бан на <strong>' . $this->player_nick . '</strong>');
         } else {
-            Syslog::add(Logs::LOG_EDITED, 'Изменены детали бана игрока <strong>' . $this->player_nick . '</strong>');
+            Syslog::add(Logs::LOG_EDITED, 'Променена информация за бана на <strong>' . $this->player_nick . '</strong>');
         }
         return parent::afterSave();
 	}
 
 	public function afterDelete() {
-		Syslog::add(Logs::LOG_DELETED, 'Удален бан игрока <strong>' . $this->player_nick . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрит бан на <strong>' . $this->player_nick . '</strong>');
 		return parent::afterDelete();
 	}
 
 	protected function beforeValidate() {
 		if($this->isNewRecord) {
 			if (!filter_var($this->player_ip, FILTER_VALIDATE_IP, array('flags' => FILTER_FLAG_IPV4))) {
-                return $this->addError($this->player_ip, 'Неверно введен IP');
+                return $this->addError($this->player_ip, 'Невалиден IP адрес');
             }
 
             if($this->player_ip && Bans::model()->count('`player_ip` = :ip AND (`ban_length` = 0 OR `ban_created` + (`ban_length` * 60) >= UNIX_TIMESTAMP())', array(
 					':ip' => $this->player_ip
 				)))
 			{
-				return $this->addError($this->player_ip, 'Этот IP уже забанен');
+				return $this->addError($this->player_ip, 'Този IP адрес е вече баннат');
 			}
 			
 			if($this->player_id && Bans::model()->count('`player_id` = :id AND (`ban_length` = 0 OR `ban_created` + (`ban_length` * 60) >= UNIX_TIMESTAMP())', array(
 					':id' => $this->player_id
 				)))
 			{
-				return $this->addError($this->player_id, 'Этот STEAMID уже забанен');
+				return $this->addError($this->player_id, 'Това STEAMID е вече баннато');
 			}
 		}
 
@@ -215,24 +215,24 @@ class Bans extends CActiveRecord
 	public static function getBanLenght()
 	{
 		return array(
-			'0'			=> 'Навсегда',
-			'5'			=> '5 минут',
-			'10'		=> '10 минут',
-			'15'		=> '15 минут',
-			'30'		=> '30 минут',
+			'0'			=> 'Завинаги',
+			'5'			=> '5 минути',
+			'10'		=> '10 минути',
+			'15'		=> '15 минути',
+			'30'		=> '30 минути',
 			'60'		=> '1 час',
 			'120'		=> '2 часа',
 			'180'		=> '3 часа',
-			'300'		=> '5 часов',
-			'600'		=> '10 часов',
-			'1440'		=> '1 сутки',
-			'4320'		=> '3 дня',
-			'10080'		=> '1 неделя',
-			'20160'		=> '2 недели',
-			'43200'		=> '1 Месяц',
-			'129600'	=> '3 месяца',
-			'259200'	=> '6 месяцев',
-			'518400'	=> '1 год',
+			'300'		=> '5 часа',
+			'600'		=> '10 часа',
+			'1440'		=> '1 ден',
+			'4320'		=> '3 дена',
+			'10080'		=> '1 седмица',
+			'20160'		=> '2 седмица',
+			'43200'		=> '1 месец',
+			'129600'	=> '3 месеца',
+			'259200'	=> '6 месеца',
+			'518400'	=> '1 година',
 		);
 	}
 

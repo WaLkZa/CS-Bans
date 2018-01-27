@@ -51,8 +51,8 @@ class ReasonsSet extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'setname' => 'Название',
-			'reasons' => 'Причины банов'
+			'setname' => 'Име',
+			'reasons' => 'Бан причина'
 		);
 	}
 
@@ -105,7 +105,7 @@ class ReasonsSet extends CActiveRecord
 		if($this->isNewRecord)
 		{
 			if(empty($this->reasons))
-				return $this->addError ('reasons', 'Выберите причины');
+				return $this->addError ('reasons', 'Избери причина');
 		}
 		
 		return TRUE;

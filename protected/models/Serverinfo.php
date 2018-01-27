@@ -84,16 +84,16 @@ class Serverinfo extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'timestamp' => 'Дата',
-			'hostname' => 'Имя сервера',
+			'hostname' => 'Име на сървъра',
 			'address' => 'Адрес',
 			'gametype' => 'Мод',
 			'rcon' => 'Rcon',
 			'amxban_version' => 'Версия',
 			'amxban_motd' => 'MOTD',
 			'motd_delay' => 'Задержка перед MOTD',
-			'amxban_menu' => 'Меню Amxban',
-			'reasons' => 'Группы причин банов',
-			'timezone_fixx' => 'Разница во времени',
+			'amxban_menu' => 'Amxban меню',
+			'reasons' => 'Група от бан причини',
+			'timezone_fixx' => 'Времева разлика',
 			'map' => 'Карта'
 		);
 	}
@@ -230,7 +230,7 @@ class Serverinfo extends CActiveRecord
 			switch($i[4])
 			{
 				case 0:
-					$type = 'Игрок';
+					$type = 'Играч';
 					break;
 				case 1:
 					$type = 'Бот';
@@ -257,14 +257,14 @@ class Serverinfo extends CActiveRecord
 	public static function getCommands()
 	{
 		return array(
-			'' => 'Выберите команду',
-			'amx_reloadadmins' => 'Перезагрузить список админов',
-			'restart' => 'Перезапустить карту/плагины',
+			'' => 'Изберете команда',
+			'amx_reloadadmins' => 'Презареди списъка с администратори',
+			'restart' => 'Рестартирай картата/плъгините',
 			'stats' => 'Команда stats',
 			'status' => 'Команда status',
-			'amx_plugins' => 'Список AMX плагинов',
-			'amx_modules' => 'Список AMX модулей',
-			'meta list' => 'Список модулей MetaMod'
+			'amx_plugins' => 'Списък с AMXX плъгини',
+			'amx_modules' => 'Списък с AMXX модули',
+			'meta list' => 'Списък с MetaMod модули'
 		);
 	}
 
@@ -275,7 +275,7 @@ class Serverinfo extends CActiveRecord
 		$return = array();
 
 		if($all)
-			$return['0'] = 'Выберите сервер';
+			$return['0'] = 'Изберете сървър';
 
 		foreach($model as $server)
 		{
@@ -283,7 +283,7 @@ class Serverinfo extends CActiveRecord
 		}
 
 		if($all)
-			$return['unknown'] = 'Любой сервер';
+			$return['unknown'] = 'Всеки сървър';
 
 		return $return;
 	}
@@ -296,15 +296,15 @@ class Serverinfo extends CActiveRecord
 
 	public function afterSave() {
 		if($this->isNewRecord)
-			Syslog::add(Logs::LOG_ADDED, 'Добавлен новый сервер <strong>' . $this->address . '</strong>');
+			Syslog::add(Logs::LOG_ADDED, 'Добавен е нов сървър <strong>' . $this->address . '</strong>');
 		else
-			Syslog::add(Logs::LOG_EDITED, 'Изменены детали сервера <strong>' . $this->hostname . '</strong>');
+			Syslog::add(Logs::LOG_EDITED, 'Променени са данните на сървър <strong>' . $this->hostname . '</strong>');
 		return parent::afterSave();
 	}
 
 	public function afterDelete() {
 		Yii::app()->cache->flush();
-		Syslog::add(Logs::LOG_DELETED, 'Удален сервер <strong>' . $this->address . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрит сървър <strong>' . $this->address . '</strong>');
 		return parent::afterDelete();
 	}
 

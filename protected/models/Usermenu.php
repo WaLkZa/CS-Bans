@@ -53,11 +53,11 @@ class Usermenu extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'pos' => 'Позиция',
-			'activ' => 'Активность',
-			'lang_key' => 'Имя для гостей',
-			'url' => 'URL для гостей',
-			'lang_key2' => 'Имя для админов',
-			'url2' => 'URL для админов',
+			'activ' => 'Активност',
+			'lang_key' => 'Име за гости',
+			'url' => 'URL за гости',
+			'lang_key2' => 'Име за админи',
+			'url2' => 'URL за админи',
 		);
 	}
 
@@ -88,7 +88,7 @@ class Usermenu extends CActiveRecord
 		) {
 			return array(
 				array(
-					'label' => 'Главная',
+					'label' => 'Начало',
 					'url' => '../',
 				)
 			);
@@ -108,13 +108,13 @@ class Usermenu extends CActiveRecord
 
 		// Проверки на ланг ключи (чтобы не было проблем со ссылками после обновления)
 		$match = array(
-			'_HOME' => 'Главная',
-			'_BANLIST' => 'Банлист',
-			'_SERVER' => 'Серверы',
-			'_ADMLIST' => 'Админы',
-			'_SEARCH' => 'Поиск',
-			'_LOGIN' => 'Войти',
-			'_LOGOUT' => 'Выйти',
+			'_HOME' => 'Начало',
+			'_BANLIST' => 'Бан листа',
+			'_SERVER' => 'Сървъри',
+			'_ADMLIST' => 'Админи',
+			'_SEARCH' => 'Търсене',
+			'_LOGIN' => 'Вход',
+			'_LOGOUT' => 'Изход',
 		);
 
 		foreach ($model as $m)
@@ -164,14 +164,14 @@ class Usermenu extends CActiveRecord
 
 	public function afterSave() {
 		if($this->isNewRecord)
-			Syslog::add(Logs::LOG_ADDED, 'Добавлена новая ссылка меню <strong>' . $this->id . '</strong>');
+			Syslog::add(Logs::LOG_ADDED, 'Добавен нов линк в менюто<strong>' . $this->id . '</strong>');
 		else
-			Syslog::add(Logs::LOG_EDITED, 'Изменена ссылка <strong>' . $this->id . '</strong>');
+			Syslog::add(Logs::LOG_EDITED, 'Променен линк в менюто<strong>' . $this->id . '</strong>');
 		return parent::afterSave();
 	}
 
 	public function afterDelete() {
-		Syslog::add(Logs::LOG_DELETED, 'Удалена ссылка <strong>' . $this->id . '</strong>');
+		Syslog::add(Logs::LOG_DELETED, 'Изтрит линк от менюто<strong>' . $this->id . '</strong>');
 		return parent::afterDelete();
 	}
 }

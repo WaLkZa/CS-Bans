@@ -69,17 +69,17 @@ class Files extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'upload_time' => 'Дата загрузки',
-			'down_count' => 'Скачек',
-			'bid' => 'ID бана',
-			'demo_file' => 'Файл демо',
+			'upload_time' => 'Дата на качване',
+			'down_count' => 'Изтегляния',
+			'bid' => 'ID на бана',
+			'demo_file' => 'Демо файл',
 			'demo_real' => 'Демо',
-			'file_size' => 'Размер файла',
-			'comment' => 'Комментарий',
-			'name' => 'Имя',
-			'email' => 'Email',
+			'file_size' => 'Размер на файла',
+			'comment' => 'Коментари',
+			'name' => 'Име',
+			'email' => 'Имейл',
 			'addr' => 'Адрес',
-			'verifyCode' => 'Код проверки',
+			'verifyCode' => 'Код за проверка',
 		);
 	}
 
@@ -125,7 +125,7 @@ class Files extends CActiveRecord
 		if($this->isNewRecord) {
 			$this->demo_real = CUploadedFile::getInstance($this, 'demo_real');
 			if($this->demo_real === NULL) {
-				$this->addError('demo_real', 'Ошибка загрузки файла');
+				$this->addError('demo_real', 'Грешка при зареждане на файла');
 			}
 		}
 

@@ -88,14 +88,14 @@ class InstallForm extends CFormModel
 	{
 		return array(
 			'db_host'		=> 'Хост',
-			'db_db'			=> 'База данных',
-			'db_user'		=> 'Пользователь',
-			'db_pass'		=> 'Пароль',
+			'db_db'			=> 'База данни',
+			'db_user'		=> 'Име',
+			'db_pass'		=> 'Парола',
 			'db_prefix'		=> 'Префикс',
-			'login'			=> 'Логин',
-			'password'		=> 'Пароль',
-			'email'			=> 'Email',
-			'license'		=> 'Условия лицензионного соглашения',
+			'login'			=> 'Име',
+			'password'		=> 'Парола',
+			'email'			=> 'Имейл',
+			'license'		=> 'Лицензионни условия',
 		);
 	}
 
@@ -179,11 +179,11 @@ class InstallForm extends CFormModel
 		// Сохраняем конфиг
 		$cfg = '<?php' . PHP_EOL;
 		$cfg .= '/**' . PHP_EOL;
-		$cfg .= ' * Конфигурационные данные системы' . PHP_EOL;
+		$cfg .= ' * Конфигурационни данни на системата' . PHP_EOL;
 		$cfg .= ' *' . PHP_EOL;
 		$cfg .= ' * @author Craft-Soft Team' . PHP_EOL;
 		$cfg .= ' * @version 1.0 beta' . PHP_EOL;
-		$cfg .= ' * @copyright (C)2013 Craft-Soft.ru.  Все права защищены.' . PHP_EOL;
+		$cfg .= ' * @copyright (C)2013 Craft-Soft.ru.  Всички права запазени.' . PHP_EOL;
 		$cfg .= ' * @package CS:Bans' . PHP_EOL;
 		$cfg .= ' * @link http://craft-soft.ru/' . PHP_EOL;
 		$cfg .= '*/' . PHP_EOL;
@@ -201,7 +201,7 @@ class InstallForm extends CFormModel
 				||
 			!file_put_contents($cfgFile, $cfg)
 		) {
-			return 'Не удалось сохранить конфиг.';
+			return 'Неуспешно запазване на конфигурационния файл.';
 		}
 
 		return TRUE;
@@ -210,11 +210,11 @@ class InstallForm extends CFormModel
 	protected function afterValidate() {
 
 		if(($err = $this->testConnect()) !== TRUE) {
-			$this->addError('', 'Ошибка подключения к БД: ' . $err);
+			$this->addError('', 'Грешка при свързването към базата данни: ' . $err);
 		}
 
 		if(!$this->license) {
-			$this->addError('license', 'Вы не приняли условия лицензионного соглашения');
+			$this->addError('license', 'Не сте приели лицензионното споразумение');
 		}
 
 		return parent::afterValidate();

@@ -35,10 +35,10 @@ class Logs extends CActiveRecord
 	public static function getLogType($type, $all = FALSE)
 	{
 		$types = array(
-			self::LOG_ADDED => 'Добавление',
-			self::LOG_EDITED => 'Редактирование',
-			self::LOG_DELETED => 'Удаление',
-			self::LOG_INSTALL => 'Установка',
+			self::LOG_ADDED => 'Добавяне',
+			self::LOG_EDITED => 'Редактиране',
+			self::LOG_DELETED => 'Изтриване',
+			self::LOG_INSTALL => 'Инсталиране',
 		);
 		if($all)
 			return $types;
@@ -46,7 +46,7 @@ class Logs extends CActiveRecord
 		if(array_key_exists($type, $types))
 			return $types[$type];
 
-		return 'Другая';
+		return 'Друго';
 	}
 
 	public function tableName()
@@ -114,8 +114,8 @@ class Logs extends CActiveRecord
 	public function afterDelete() {
 		Syslog::add(
 			Logs::LOG_DELETED,
-			'Удалена запись системного лога № <strong>' .
-				$this->id . '</strong>, зафиксированная за админом strong>' .
+			'Изтрит запис от системния лог № <strong>' .
+				$this->id . '</strong>, определено за админ strong>' .
 				$this->username . '</strong>'
 		);
 		return parent::afterDelete();

@@ -60,13 +60,13 @@ class Comments extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Имя',
-			'comment' => 'Комментарий',
-			'email' => 'Email',
+			'name' => 'Име',
+			'comment' => 'Коментари',
+			'email' => 'Имейл',
 			'addr' => 'Адрес',
 			'date' => 'Дата',
-			'bid' => 'ID бана',
-			'verifyCode' => 'Код проверки',
+			'bid' => 'ID на бана',
+			'verifyCode' => 'Код за проверка',
 		);
 	}
 
