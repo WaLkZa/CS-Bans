@@ -119,10 +119,10 @@ class Prefs extends CApplicationComponent {
 	public static function date2word($dif, $short=false, $server = false)
 	{
 		if($dif == 0) {
-			return $server ? '' : 'Навсегда';
+			return $server ? '' : 'Завинаги';
 		}
 		if($dif == '-1') {
-			return 'Разбанен';
+			return 'Ънбаннат';
 		}
 
 		$dif = $server ? $dif : $dif * 60;
@@ -133,7 +133,7 @@ class Prefs extends CApplicationComponent {
 			$dif = $dif - ($years * (60 * 60 * 24 * 365));
 
 			if($years) {
-				$s .= "{$years} лет ";
+				$s .= "{$years} год. ";
 			}
 			if($years && $short) {
 				return $s;
@@ -152,7 +152,7 @@ class Prefs extends CApplicationComponent {
 			$dif = $dif - ($weeks * (60 * 60 * 24 * 7));
 
 			if($weeks) {
-				$s .= "{$weeks} нед. ";
+				$s .= "{$weeks} сед. ";
 			}
 
 			if($weeks && $short) {
@@ -162,7 +162,7 @@ class Prefs extends CApplicationComponent {
 			$days = intval($dif / (60 * 60 * 24));
 			$dif = $dif - ($days * (60 * 60 * 24));
 			if($days) {
-				$s .= "{$days} дн. ";
+				$s .= ($days == 1) ? "{$days} ден " : "{$days} дни ";
 			}
 			if($days && $short) {
 				return $s;
@@ -171,7 +171,7 @@ class Prefs extends CApplicationComponent {
 			$hours = intval($dif / (60 * 60));
 			$dif = $dif - ($hours * (60 * 60));
 			if($hours) {
-				$s .= "{$hours} час. ";
+				$s .= ($hours == 1) ? "{$hours} час " : "{$hours} часа ";
 			}
 			if($hours && $short) {
 				return $s;
@@ -206,11 +206,11 @@ class Prefs extends CApplicationComponent {
 	public static function getExpired($create, $lenght)
 	{
 		if ($lenght == 0) {
-            return 'Никогда';
+            return 'Никога';
         }
 
         if ($lenght == '-1') {
-            return 'Разбанен';
+            return 'Ънбаннат';
         }
 
         $lenght = $lenght * 60;
@@ -287,25 +287,25 @@ class Prefs extends CApplicationComponent {
 		return array(
 			'info' => array(
 				//'Версия сайта'			=> self::getVersion(),
-				'Версия PHP'			=> version_compare(PHP_VERSION, '5.3', '<')
-						? '<span class="text-error"><b>'.PHP_VERSION.'</b> (рекомендуемая 5.3 или выше)</span>'
+				'PHP версия'			=> version_compare(PHP_VERSION, '5.3', '<')
+						? '<span class="text-error"><b>'.PHP_VERSION.'</b> (препоръчва се 5.3 или по-нова)</span>'
 						: PHP_VERSION,
-				'Веб сервер'			=> $_SERVER['SERVER_SOFTWARE'],
-				'Версия MySQL'			=> version_compare(Yii::app()->db->serverVersion, '5.0', '<')
-						? '<span class="text-error"><b>'.Yii::app()->db->serverVersion.'</b> (рекомендуемая 5.0 или выше)</span>'
+				'Уеб сървър'			=> $_SERVER['SERVER_SOFTWARE'],
+				'MySQL версия'			=> version_compare(Yii::app()->db->serverVersion, '5.0', '<')
+						? '<span class="text-error"><b>'.Yii::app()->db->serverVersion.'</b> (препоръчва се 5.0 или по-нова)</span>'
 						: Yii::app()->db->serverVersion,
-				'display_errors'		=> ini_get('display_errors') ? '<span class="text-error"><b>Вкл</b></span>' : 'Выкл',
-				'register_globals'		=> ini_get('register_globals') ? '<span class="text-error"><b>Вкл</b></span>' : 'Выкл',
-				'magic_quotes_gpc'		=> get_magic_quotes_gpc() ? '<span class="text-error"><b>Вкл</b></span>' : 'Выкл',
-				'safe_mode'				=> ini_get('safe_mode') ? '<span class="text-error"><b>Вкл</b></span>' : 'Выкл',
+				'display_errors'		=> ini_get('display_errors') ? '<span class="text-error"><b>Вкл</b></span>' : 'Изкл',
+				'register_globals'		=> ini_get('register_globals') ? '<span class="text-error"><b>Вкл</b></span>' : 'Изкл',
+				'magic_quotes_gpc'		=> get_magic_quotes_gpc() ? '<span class="text-error"><b>Вкл</b></span>' : 'Изкл',
+				'safe_mode'				=> ini_get('safe_mode') ? '<span class="text-error"><b>Вкл</b></span>' : 'Изкл',
 				'post_max_size'			=> ini_get('post_max_size'),
 				'upload_max_filesize'	=> ini_get('upload_max_filesize'),
 				'max_execution_time'	=> ini_get('max_execution_time'),
 			),
 			'modules' => array(
-				'bcmath'	=> extension_loaded('bcmath') ? 'Да' : 'Нет',
-				'gmp'		=> extension_loaded('gmp') ? 'Да' : 'Нет',
-				'gd'		=> extension_loaded('gd') ? 'Да' : 'Нет',
+				'bcmath'	=> extension_loaded('bcmath') ? 'Да' : 'Не',
+				'gmp'		=> extension_loaded('gmp') ? 'Да' : 'Не',
+				'gd'		=> extension_loaded('gd') ? 'Да' : 'Не',
 			)
 		);
 	}
@@ -319,13 +319,13 @@ class Prefs extends CApplicationComponent {
 			$last = @file_get_contents('http://craft-soft.ru/goods/version.html?id=csbans');
 		}
 		if(!$last) {
-			return "{$current} <span class='text-warning'>(не удалось проверить версию)</span>";
+			return "{$current} <span class='text-warning'>(не успя да се провери версията)</span>";
 		}
 		Yii::app()->cache->set('getVersion', $last, 21600);
 		if(version_compare($current, $last, '<')) {
-			return "{$current} <span class='text-error'>(доступна новая версия)</span>";
+			return "{$current} <span class='text-error'>(достъпна е нова версия)</span>";
 		}
-		return "{$current} <span class='text-success'>(вы используете последнюю версию)</span>";
+		return "{$current} <span class='text-success'>(използвате последната версия)</span>";
 	}
     
     public static function getRealIp() {
