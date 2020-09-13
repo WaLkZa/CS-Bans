@@ -12,13 +12,13 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle=Yii::app()->name . ' - Ошибка';
+$this->pageTitle=Yii::app()->name . ' - Грешка';
 $this->breadcrumbs=array(
-	'Ошибка',
+	'Грешка',
 );
 ?>
 
-<h2>Ошибка <?php echo $code; ?></h2>
+<h2>Грешка <?php echo $code; ?></h2>
 
 <div class="alert alert-error error">
 <?php echo CHtml::encode($message); ?>

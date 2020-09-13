@@ -20,7 +20,7 @@ Yii::app()->clientScript->registerScript('command', '
 	$("#sendcommand").click(function() {
 		var command = $("#command").val();
 		if(!command)
-			return alert("Введите команду");
+			return alert("Въведете команда");
 
 		$.post(
 			"'.Yii::app()->createUrl('/serverinfo/sendcommand', array('id' => $model->id)).'",
@@ -43,7 +43,7 @@ Yii::app()->clientScript->registerScript('command', '
 		'enableAjaxValidation'=>true,
 	)); ?>
 
-	<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+	<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 	<fieldset>
 		<?php echo $form->errorSummary($model); ?>
 			<?php echo $form->passwordFieldRow($model,'rcon',array('size'=>32,'maxlength'=>32)); ?>
@@ -53,8 +53,8 @@ Yii::app()->clientScript->registerScript('command', '
 			<?php echo $form->dropDownListRow($model,'timezone_fixx', $timezones); ?>
 	</fieldset>
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Создать' : 'Обновить')); ?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Сбросить')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Създай' : 'Обнови')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Нулирай')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
@@ -66,7 +66,7 @@ Yii::app()->clientScript->registerScript('command', '
 	<thead>
 		<tr>
 			<th>
-				Отправить RCON команду на сервер
+				Изпрати RCON команди към сървъра
 			</th>
 		</tr>
 	</thead>

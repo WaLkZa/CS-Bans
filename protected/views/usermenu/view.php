@@ -12,23 +12,23 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Главное меню';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Главно меню';
 $this->breadcrumbs=array(
-	'Админцентр'=> array('/admin/index'),
-	'Главное меню'=>array('admin'),
-	'Ссылка № '.$model->id,
+	'Админ панел'=> array('/admin/index'),
+	'Главно меню'=>array('admin'),
+	'Линк № '.$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'Удалить','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Удалить ссылку?')),
-	array('label'=>'Редактировать','url'=>array('update','id'=>$model->id)),
-	array('label'=>'Добавить ссылку','url'=>array('create')),
-	array('label'=>'Управление ссылками','url'=>array('admin')),
+	array('label'=>'Изтрий','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Изтриване на линка?')),
+	array('label'=>'Редактирай','url'=>array('update','id'=>$model->id)),
+	array('label'=>'Добави линк','url'=>array('create')),
+	array('label'=>'Управление на линкове','url'=>array('admin')),
 );
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webmainmenu'));
 ?>
 
-<h2>Детали ссылки №<?php echo $model->id; ?></h2>
+<h2>Детайли за линк №<?php echo $model->id; ?></h2>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
@@ -36,7 +36,7 @@ $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 
 		'pos',
 		array(
 			'name' => 'activ',
-			'value' => $model->activ == 1 ? 'Да' : 'Нет'
+			'value' => $model->activ == 1 ? 'Да' : 'Не'
 		),
 		'lang_key',
 		'url',

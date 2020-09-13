@@ -12,10 +12,10 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Список серверов';
+$this->pageTitle = Yii::app()->name .' :: Списък със сървъри';
 
 $this->breadcrumbs=array(
-	'Серверы',
+	'Сървъри',
 );
 
 Yii::app()->clientScript->registerScript('serverview', '
@@ -36,7 +36,7 @@ $(".servtr").live("click", function(){
 ');
 
 ?>
-<h2>Серверы</h2>
+<h2>Сървъри</h2>
 
 <div class="container">
 	<div class="row-fluid">
@@ -47,8 +47,8 @@ $(".servtr").live("click", function(){
 						<th>Мод</th>
 						<th>OS</th>
 						<th>VAC</th>
-						<th>Имя</th>
-						<th>Игроки</th>
+						<th>Име</th>
+						<th>Играчи</th>
 						<th>Карта</th>
 						<th></th>
 					</tr>
@@ -78,7 +78,7 @@ $(".servtr").live("click", function(){
 						<td>
 							<div class="row-fluid">
 								<div class="span8 muted">
-									<b>Всего банов:</b>
+									<b>Всички банове:</b>
 								</div>
 								<div class="span4">
 									<?php echo $info['bancount']; ?>
@@ -90,7 +90,7 @@ $(".servtr").live("click", function(){
 						<td>
 							<div class="row-fluid">
 								<div class="span8 muted">
-									<b>Активные:</b>
+									<b>Активни:</b>
 								</div>
 								<div class="span4">
 									<?php echo $info['actbans']; ?>
@@ -102,7 +102,7 @@ $(".servtr").live("click", function(){
 						<td>
 							<div class="row-fluid">
 								<div class="span8 muted">
-									<b>Перманентные:</b>
+									<b>Постоянни:</b>
 								</div>
 								<div class="span4">
 									<?php echo $info['permbans']; ?>
@@ -114,7 +114,7 @@ $(".servtr").live("click", function(){
 						<td>
 							<div class="row-fluid">
 								<div class="span8 muted">
-									<b>Временные:</b>
+									<b>Временни:</b>
 								</div>
 								<div class="span4">
 									<?php echo $info['tempbans']; ?>
@@ -131,7 +131,7 @@ $(".servtr").live("click", function(){
 						<td>
 							<div class="row-fluid">
 								<div class="span8 muted">
-									<b>Админов:</b>
+									<b>Админи:</b>
 								</div>
 								<div class="span4">
 									<?php echo $info['admins']; ?>
@@ -143,7 +143,7 @@ $(".servtr").live("click", function(){
 						<td>
 							<div class="row-fluid">
 								<div class="span8 muted">
-									<b>Серверов:</b>
+									<b>Сървъри:</b>
 								</div>
 								<div class="span4">
 									<?php echo $info['serversCount']; ?>
@@ -167,29 +167,29 @@ $(".servtr").live("click", function(){
 
 <div class="modal-header">
     <a class="close" data-dismiss="modal"  data-placement="bottom">&times;</a>
-    <h4>Детали сервера <a id="serverlink" rel="tooltip" data-placement="bottom" data-title="Показать подробности"></a></h4>
+    <h4>Детайли на сървъра <a id="serverlink" rel="tooltip" data-placement="bottom" data-title="Покажи детайли"></a></h4>
 </div>
 
 <div class="modal-body" id="ban_name">
 	<div class="row-fluid">
 			<div class="span6">
-				<b>Название: </b>
+				<b>Име: </b>
 				<span id="server-name"></span>
 				<hr>
-				<b>Адрес: </b>
+				<b>IP: </b>
 				<span id="server-address"></span>
 				<hr>
 				<b>Карта: </b>
 				<span id="server-map"></span>
 				<hr>
-				<b>Игроки: </b>
+				<b>Играчи: </b>
 				<span id="server-players"></span>
 			</div>
 			<div class="span6">
 				<div id="server-mapimage" class="text-center"></div>
 				<hr>
 				<div id="server-links" class="text-center">
-					<a id="steam-connect" title="Подключиться">
+					<a id="steam-connect" title="Присъедини се">
 						<?php echo CHtml::image(Yii::app()->urlManager->baseUrl. '/images/steam-connect.png'); ?>
 					</a>
 					&nbsp;
@@ -202,14 +202,14 @@ $(".servtr").live("click", function(){
 	<hr>
 	<p class="text-success">
 		<i class="icon-user"></i>
-		Игроки
+		Играчи
 	</p>
 	<div id="serverinfo-players"></div>
 </div>
 
 <div class="modal-footer">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-        'label'=>'Закрыть',
+        'label'=>'Затвори',
         'url'=>'#',
         'htmlOptions'=>array('data-dismiss'=>'modal'),
     )); ?>
@@ -230,7 +230,7 @@ $(".servtr").live("click", function(){
 				var elem = $('#server<?php echo intval($server->id)?>');
 				if(!info)
 				{
-					ret = '<td colspan="7"><?php echo $server['hostname']?> <b>Не отвечает</b></td>';
+					ret = '<td colspan="7"><?php echo $server['hostname']?> <b>Без отговор</b></td>';
 					elem.addClass('error');
 				}
 				else

@@ -12,16 +12,16 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name . ' :: Админцентр - Добавить бан';
+$this->pageTitle = Yii::app()->name . ' :: Админ панел - Добавяне на бан';
 $this->breadcrumbs = array(
-	'Админцентр' => array('/admin/index'),
-	'Добавить бан'
+	'Админ панел' => array('/admin/index'),
+	'Добави бан'
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'main', 'activebtn' => 'admaddban'));
 
 ?>
 
-<h2>Добавить бан</h2>
+<h2>Добави бан</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model, 'activebtn' => 'admaddban')); ?>

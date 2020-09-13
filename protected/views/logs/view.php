@@ -12,7 +12,7 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Системный лог';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Системен лог';
 
 $this->breadcrumbs=array(
 	'Logs'=>array('index'),
@@ -21,7 +21,7 @@ $this->breadcrumbs=array(
 
 $this->menu = array(
 	array(
-		'label' => 'Все записи',
+		'label' => 'Всички записи',
 		'url' => array('admin')
 	)
 );
@@ -29,7 +29,7 @@ $this->menu = array(
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'logs'));
 ?>
 
-<h2>Запись №<?php echo $model->id; ?></h2>
+<h2>Запис №<?php echo $model->id; ?></h2>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,

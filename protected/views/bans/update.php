@@ -12,15 +12,15 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Редактировать бан игрока ' . $model->player_nick;
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Редактиране на баннат играч ' . $model->player_nick;
 $this->breadcrumbs=array(
-	'Банлист'=>array('index'),
+	'Бан листа'=>array('index'),
 	'Бан №'.$model->bid=>array('view','id'=>$model->bid),
-	'Редактировать',
+	'Редактиране',
 );
 
 ?>
 
-<h2>Редактировать бан №<?php echo $model->bid; ?></h2>
+<h2>Редактиране на бан №<?php echo $model->bid; ?></h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

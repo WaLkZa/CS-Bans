@@ -12,11 +12,11 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Добавить онлайн бан';
+$page = 'Добави онлайн бан';
 $this->pageTitle = Yii::app()->name . ' - ' . $page;
 
 $this->breadcrumbs=array(
-	'Админцентр' => array('/admin/index'),
+	'Админ панел' => array('/admin/index'),
 	$page,
 );
 
@@ -53,10 +53,10 @@ function playeraction(action, player, server)
 	switch (action)
 	{
 		case "ban":
-			reasontext = "Забанить пользователя"
+			reasontext = "Бани играча"
 			break;
 		case "kick":
-			reasontext = "Кикнуть пользователя"
+			reasontext = "Кикни играча"
 			break;
 		default:
 			return false;
@@ -67,12 +67,12 @@ function playeraction(action, player, server)
 	}
 	if(action == "ban")
 	{
-		var reason = prompt("Введите причину бана", "Читер");
+		var reason = prompt("Въведете причина за бана", "Чийтър");
 		if(!reason)
-			return alert("Введите причину!");
-		var bantime = prompt("Введите время бана в минутах (1440 - сутки, 10080 - неделя, 43200 - месяц)", "1440");
+			return alert("Въведете причина!");
+		var bantime = prompt("Въведете време за бана в минути (1440 - ден, 10080 - седмица, 43200 - месец)", "1440");
 		if(!bantime)
-			return alert("Введите срок бана!");
+			return alert("Въведете време за бана!");
 	}
 
 	$("#loading").show();
@@ -92,11 +92,11 @@ function playeraction(action, player, server)
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'main', 'activebtn' => 'addbanonline'));
 ?>
-<h2>Добавить бан онлайн</h2>
+<h2>Добави онлайн бан</h2>
 <table class="table table-bordered table-condensed table-striped">
 	<thead>
 		<tr>
-			<th>Имя</th>
+			<th>Име</th>
 			<th>Адрес</th>
 			<th>Версия</th>
 		</tr>

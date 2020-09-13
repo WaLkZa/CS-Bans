@@ -21,7 +21,7 @@
 	'enableAjaxValidation'=>true,
 )); ?>
 
-<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 <fieldset>
 	<?php echo $form->errorSummary($model); ?>
 	<?php echo $form->textFieldRow($model,'username',array('size'=>32,'maxlength'=>32)); ?>
@@ -33,8 +33,8 @@
 	?>
 </fieldset>
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Создать' : 'Обновить')); ?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Сбросить')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Добави' : 'Обнови')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Нулирай')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -14,10 +14,10 @@
 
 $info = $server->getInfo();
 
-$this->pageTitle = Yii::app()->name .' :: Сервер ' . $info['name'];
+$this->pageTitle = Yii::app()->name .' :: Сървър ' . $info['name'];
 
 $this->breadcrumbs=array(
-	'Серверы'=>array('index'),
+	'Сървъри'=>array('index'),
 	$info['name'],
 );
 
@@ -43,13 +43,13 @@ if(!Yii::app()->user->isGuest)
 		switch (action)
 		{
 			case 'ban':
-				reasontext = 'Забанить пользователя'
+				reasontext = 'Банни играча'
 				break;
 			case 'kick':
-				reasontext = 'Кикнуть пользователя'
+				reasontext = 'Кикни играча'
 				break;
 			case 'message':
-				reasontext = 'Отправить сообщение пользователю'
+				reasontext = 'Изпрати съобщение до играча'
 				break;
 			default:
 				return false;
@@ -60,8 +60,8 @@ if(!Yii::app()->user->isGuest)
 		}
 		if(action == 'ban')
 		{
-			var reason = prompt('Введите причину бана', 'Читер');
-			var bantime = prompt('Введите время бана в минутах (1440 - сутки, 10080 - неделя, 43200 - месяц)', '1440');
+			var reason = prompt('Въведи причина за бана', 'Чийтър');
+			var bantime = prompt('Въведи време за бана в минути (1440 - ден, 10080 - седмица, 43200 - месец)', '1440');
 			if(!reason || !bantime) {
 				return false;
 			}
@@ -69,7 +69,7 @@ if(!Yii::app()->user->isGuest)
 
 		if(action == 'message')
 		{
-			var reason = prompt('Введите сообщение для игрока ' + player, '');
+			var reason = prompt('Въведете съобщение за играча ' + player, '');
 			if(!reason)
 			{
 				return false;
@@ -97,11 +97,11 @@ if(!Yii::app()->user->isGuest)
 				playeraction(player, key);
 			},
 			items: {
-				'ban': {name: 'Забанить'},
+				'ban': {name: 'Банни'},
 				'separator': '-----',
-				'kick': {name: 'Кикнуть'},
+				'kick': {name: 'Кикни'},
 				'separator2': '-----',
-				'message': {name: 'Отправить сообщение'},
+				'message': {name: 'Изпращане на съобщение'},
 			}
 		});
 	});
@@ -114,28 +114,28 @@ endif;
 
 <div id="container">
 	<?php if($info): ?>
-	<h2>Детали сервера &laquo;<?php echo $info['name']; ?>&raquo;</h2>
+	<h2>Детайли за сървър &laquo;<?php echo $info['name']; ?>&raquo;</h2>
 	<?php if(!Yii::app()->user->isGuest): ?>
 	<p class="text-success">
 		<i class="icon-exclamation-sign"></i>
-		<i>Нажмите правой кнопкой на игроке для вызова меню</i>
+		<i>Натиснете дясно копче върху играча за да отворите менюто</i>
 	</p>
 	<?php endif; ?>
 
 	<div class="row-fluid">
 		<div class="span7">
 			<?php if(is_array($info['playersinfo']) && !empty($info['playersinfo'])): ?>
-			<h5 class="text-center">Игроки</h5>
+			<h5 class="text-center">Играчи</h5>
 			<table class="table table-bordered" id="players">
 				<thead>
 					<th>
 						Ник
 					</th>
 					<th style="text-align: center">
-						Счет
+						Резултат
 					</th>
 					<th style="text-align: center">
-						Время
+						Време
 					</th>
 				</thead>
 				<tbody>
@@ -150,7 +150,7 @@ endif;
 				</tbody>
 			</table>
 			<?php else: ?>
-			<div class="alert alert-error">Нет игроков</div>
+			<div class="alert alert-error">Няма играчи</div>
 			<?php endif; ?>
 		</div>
 		<div class="span5">
@@ -163,7 +163,7 @@ endif;
 				</tr>
 				<tr>
 					<td class="bold">
-						Адрес:
+						IP:
 					</td>
 					<td>
 						 <?php
@@ -184,7 +184,7 @@ endif;
 				</tr>
 				<tr>
 					<td class="bold">
-						Игроки:
+						Играчи:
 					</td>
 					<td>
 						 <?php
@@ -195,7 +195,7 @@ endif;
 				<?php if($info['nextmap']):?>
 				<tr>
 					<td class="bold">
-						Следующая карта:
+						Следваща карта:
 					</td>
 					<td>
 						 <?php echo CHtml::encode($info['nextmap']); ?>
@@ -205,7 +205,7 @@ endif;
 				<?php if($info['timeleft']):?>
 				<tr>
 					<td class="bold">
-						До смены карты:
+						До смяна на картата:
 					</td>
 					<td>
 						 <?php echo CHtml::encode($info['timeleft']); ?>
@@ -215,7 +215,7 @@ endif;
 				<?php if($info['contact']):?>
 				<tr>
 					<td class="bold">
-						Контакты:
+						Контакти:
 					</td>
 					<td>
 						 <?php echo CHtml::encode($info['contact']); ?>
@@ -226,9 +226,9 @@ endif;
 		</div>
 	</div>
 	<?php else: ?>
-	<h2>Детали сервера &laquo;<?php echo $server->hostname; ?>&raquo;</h2>
+	<h2>Детайли за сървър &laquo;<?php echo $server->hostname; ?>&raquo;</h2>
 	<div class="alert alert-error">
-		Сервер не отвечает. Возможно сервер выключен или сменяет карту
+		Сървърът не отговаря. Може би е спрян или се сменя картата.
 	</div>
 	<?php endif; ?>
 </div>

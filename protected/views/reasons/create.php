@@ -12,19 +12,19 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Причины банов :: Добавить причину';
+$page = 'Причини за бан :: Добави причина';
 $this->pageTitle = Yii::app()->name . ' - ' . $page;
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Причины банов' => array('/admin/reasons'),
-	'Добавить причину'
+	'Админ панел'=>array('/admin/index'),
+	'Причини за бан' => array('/admin/reasons'),
+	'Добави причина'
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servreasons'));
 
 ?>
 
-<h2>Добавить причину бана</h2>
+<h2>Добави причина за бан</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

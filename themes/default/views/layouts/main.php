@@ -74,10 +74,10 @@
 						<li>
 							<p>
 								<form method="post" action="<?php echo Yii::app()->createUrl('/site/login')?>" accept-charset="UTF-8">
-									<input style="margin-bottom: 15px;" type="text" placeholder="Логин" id="LoginForm_username" name="LoginForm[username]">
-									<input style="margin-bottom: 15px;" type="password" placeholder="Пароль" id="LoginForm_password" name="LoginForm[password]">
+									<input style="margin-bottom: 15px;" type="text" placeholder="Име" id="LoginForm_username" name="LoginForm[username]">
+									<input style="margin-bottom: 15px;" type="password" placeholder="Парола" id="LoginForm_password" name="LoginForm[password]">
 									<input type="hidden" value="<?php echo Yii::app()->request->csrfToken?>" name="<?php echo Yii::app()->request->csrfTokenName?>" />
-									<input class="btn btn-primary btn-block" name="yt0" type="submit" value="Войти">
+									<input class="btn btn-primary btn-block" name="yt0" type="submit" value="Вход">
 								</form>
 							</p>
 						</li>
@@ -90,7 +90,7 @@
 					<ul class="dropdown-menu">
 						<li>
 							<?php echo CHtml::link(
-									'<i class="icon-globe"></i> Админцентр',
+									'<i class="icon-globe"></i> Админ панел',
 									Yii::app()->createUrl('/admin/index')
 								)
 							?>
@@ -100,7 +100,7 @@
 						</li>
 						<li>
 							<?php echo CHtml::link(
-									'<i class="icon-off"></i> Выйти',
+									'<i class="icon-off"></i> Изход',
 									Yii::app()->createUrl('/site/logout')
 								)
 							?>
@@ -152,7 +152,7 @@
 	</div>
 </div>
 <div id="loading">
-	<h1>Загрузка</h1>
+	<h1>Зарежда се</h1>
 	<div class="circle"></div>
 	<div class="circle1"></div>
 </div>

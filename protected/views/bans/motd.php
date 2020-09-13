@@ -15,9 +15,9 @@
 ?>
 <html>
 <head>
-	<title>Детали бана</title>
+	<title>Детайли за бана</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="ru" />
+	<meta name="language" content="bg" />
 	<?php Yii::app()->bootstrap->registerResponsiveCss(); ?>
 	<?php Yii::app()->clientScript->enableJavaScript = FALSE; ?>
 	<style>
@@ -34,22 +34,22 @@
 	<div class="container" style="padding-top: 20px">
 		<table class="table table-bordered">
 			<tr>
-				<td>Ваш ник:</td>
+				<td>Ник:</td>
 				<td><?php echo $model->country; ?> <?php echo $model->player_nick; ?></td>
 			</tr>
 			<tr>
-				<td>Ваш SteamID:</td>
+				<td>SteamID:</td>
 				<td><?php echo $model->player_id; ?></td>
 			</tr>
 			<tr>
-				<td>Истекает:</td>
+				<td>Изтича на:</td>
 				<td><?php echo Prefs::getExpired($model->ban_created,$model->ban_length); ?></td>
 			</tr>
 			<tr>
 				<td colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td>Срок бана:</td>
+				<td>Продължителност:</td>
 				<td class="banDuration<?php echo $model->ban_length == 0 ? 'Perm' : ''; ?>"><?php echo Prefs::date2word($model->ban_length); ?></td>
 			</tr>
 			<tr>
@@ -60,11 +60,11 @@
 				<td colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td>Забанен админом:</td>
-				<td><?php echo $show_admin ? $model->admin_nick : '<i>Информация засекречена</i>'; ?></td>
+				<td>Баннат от админ:</td>
+				<td><?php echo $show_admin ? $model->admin_nick : '<i>Недостъпна информация</i>'; ?></td>
 			</tr>
 			<tr>
-				<td>Забанен на сервере:</td>
+				<td>В сървър:</td>
 				<td><?php echo $model->server_name; ?></td>
 			</tr>
 		</table>
@@ -75,7 +75,7 @@
 				&copy; <?php echo date('Y'); ?> 
 				<?php echo CHtml::link('Craft-Soft Studio', 'http://craft-soft.ru', array('target' => '_blank'));  ?>
 				<br />
-				All Rights Reserved.
+				Всички права запазени.
 			</p>
 		</div>
 	</div>

@@ -12,20 +12,20 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Веб уровни';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Уеб права';
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Веб уровни',
+	'Админ панел'=>array('/admin/index'),
+	'Уеб права',
 );
 
 $this->menu=array(
-	array('label'=>'Админцентр', 'url'=>array('/admin/index')),
-	array('label'=>'Добавить уровень', 'url'=>array('create')),
+	array('label'=>'Админ панел', 'url'=>array('/admin/index')),
+	array('label'=>'Добави права', 'url'=>array('create')),
 );
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webadmlevel'));
 ?>
 
-<h2>Управление уровнями веб админов</h2>
+<h2>Управление на правата на уеб админи</h2>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'levels-grid',

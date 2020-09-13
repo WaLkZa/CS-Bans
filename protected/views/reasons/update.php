@@ -12,18 +12,18 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Причины банов';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Причини за бан';
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Причины банов' => array('/admin/reasons'),
-	'Редактировать причину ' . $model->reason
+	'Админ панел'=>array('/admin/index'),
+	'Причини за бан' => array('/admin/reasons'),
+	'Редактирай причина ' . $model->reason
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servreasons'));
 
 ?>
 
-<h2>Редактировать причину "<?php echo $model->reason; ?>"</h2>
+<h2>Редактиране на причина "<?php echo $model->reason; ?>"</h2>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

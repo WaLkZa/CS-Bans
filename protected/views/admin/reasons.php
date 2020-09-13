@@ -12,19 +12,19 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Причины банов';
+$page = 'Причини за бан';
 $this->pageTitle = Yii::app()->name . ' - ' . $page;
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
+	'Админ панел'=>array('/admin/index'),
 	$page
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servreasons'));
 
 $this->menu=array(
-	array('label'=>'Добавить группу причин','url'=>array('/reasonsSet/create')),
-	array('label'=>'Добавить причину','url'=>array('/reasons/create')),
+	array('label'=>'Добави група от причини','url'=>array('/reasonsSet/create')),
+	array('label'=>'Добави причина','url'=>array('/reasons/create')),
 );
 
 
@@ -45,10 +45,10 @@ function clearmodal()
 ?>
 
 
-<h2>Управление причинами банов</h2>
+<h2>Управление на причините за бан</h2>
 
-<h4>Группы причин</h4>
-<small class="text-success">Кликнуть на группе для редактирования</small>
+<h4>Групови причини</h4>
+<small class="text-success">Кликнете на групата за да редактирате</small>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'type' => 'bordered condensed striped',
 	'id'=>'reasonsset-grid',
@@ -86,7 +86,7 @@ function clearmodal()
 )); ?>
 
 
-<h4>Причины</h4>
+<h4>Причини</h4>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'type' => 'bordered condensed striped',
 	'id'=>'reasons-grid',
@@ -130,7 +130,7 @@ function clearmodal()
 
 <div class="modal-footer">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-        'label'=>'Закрыть',
+        'label'=>'Затвори',
         'url'=>'#',
         'htmlOptions'=>array(
 			//'data-dismiss'=>'modal',

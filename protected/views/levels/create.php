@@ -12,22 +12,22 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Веб уровни';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Уеб права';
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Веб уровни'=>array('admin'),
-	'Добавить'
+	'Админ панел'=>array('/admin/index'),
+	'Уеб права'=>array('admin'),
+	'Добави'
 );
 
 $this->menu=array(
-	array('label'=>'Админцентр','url'=>array('index')),
-	array('label'=>'Уровни','url'=>array('admin')),
+	array('label'=>'Админ панел','url'=>array('index')),
+	array('label'=>'Права','url'=>array('admin')),
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webadmlevel'));
 ?>
 
-<h2>Добавить новый уровень веб админов</h2>
+<h2>Добави нови права на уеб админ</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

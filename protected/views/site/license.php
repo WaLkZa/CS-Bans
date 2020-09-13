@@ -12,15 +12,15 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle=Yii::app()->name . ' - Лицензионное соглашение';
+$this->pageTitle=Yii::app()->name . ' - Лицензионно споразумение';
 $this->breadcrumbs=array(
-	'Лицензионное соглашение',
+	'Лицензионно споразумение',
 );
 
 Yii::app()->clientScript->registerMetaTag('noindex,follow', 'robots');
 ?>
 
-<h2>Лицензионное соглашение</h2>
+<h2>Лицензионно споразумение</h2>
 
 <ol>
 	<li>Все авторские права на приложение "CraftSoft:Bans" (далее по тексту - "CS:Bans") принадлежат только автору - Урих Александру (<a href="http://craft-soft.ru">http://craft-soft.ru</a>);</li>

@@ -12,21 +12,21 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - WEB админы';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - уеб админи';
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Управление WEB админами',
+	'Админ панел'=>array('/admin/index'),
+	'Управление на уеб админи',
 );
 
 $this->menu=array(
-	array('label'=>'Админцентр', 'url'=>array('/admin/index')),
-	array('label'=>'Добавить админа', 'url'=>array('create')),
+	array('label'=>'Админ панел', 'url'=>array('/admin/index')),
+	array('label'=>'Добави админ', 'url'=>array('create')),
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webadmins'));
 ?>
 
-<h2>Управление ВЕБ админаи</h2>
+<h2>Управление на уеб админи</h2>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'webadmins-grid',

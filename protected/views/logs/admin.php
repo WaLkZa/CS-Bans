@@ -12,15 +12,15 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name . ' :: Админцентр - Системный лог';
+$this->pageTitle = Yii::app()->name . ' :: Админ панел - Системен лог';
 $this->breadcrumbs = array(
-	'Админцентр' => array('/admin/index'),
-	'Системный лог'
+	'Админ панел' => array('/admin/index'),
+	'Системен лог'
 );
 
 $this->menu = array(
 	array(
-		'label' => 'Удалить все записи',
+		'label' => 'Изтриване на всички записи',
 		'url' => '#',
 		'linkOptions' => array(
 			'id' => 'clearLog'
@@ -30,14 +30,14 @@ $this->menu = array(
 
 Yii::app()->clientScript->registerScript('', '
 	$("a#clearLog").click(function(){
-		if(!confirm("Удалить все записи лога?"))
+		if(!confirm("Изтриване на всички записи в лога?"))
 			return false;
 
 		var ret = "";
 
 		$.post("", {"clearlog": 1}, function(data){
 			jQuery("#logs-grid").yiiGridView("update");
-			alert("Лог очищен");
+			alert("Лога е изчистен");
 		});
 		return false;
 	});
@@ -46,7 +46,7 @@ Yii::app()->clientScript->registerScript('', '
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'logs'));
 ?>
 
-<h2>Системный лог</h2>
+<h2>Системен лог</h2>
 
 <?php
 
@@ -99,7 +99,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 
 Yii::app()->clientScript->registerScript('re-install-date-picker', "
 	function reinstallDatePicker(id, data) {
-		$('#timestamp').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['ru'],{'showAnim':'fold'}));
+		$('#timestamp').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['bg'],{'showAnim':'fold'}));
 	}
 ");
 ?>

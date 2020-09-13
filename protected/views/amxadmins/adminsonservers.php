@@ -12,15 +12,15 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Администраторы серверов';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Сървърни админи';
 $this->breadcrumbs=array(
-	'Админцентр' => array('/admin/index'),
-	'Администраторы серверов',
+	'Админ панел' => array('/admin/index'),
+	'Сървърни админи',
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servadmassign'));
 ?>
-<h2>Управление админами серверов</h2>
+<h2>Управление на сървърните админите</h2>
 <?php
 
 Yii::app()->clientScript->registerScript('serverview', '
@@ -58,7 +58,7 @@ function checkaccess(hash)
 <table class="table table-bordered table-condensed table-striped">
 	<thead>
 		<tr>
-			<th>Название</th>
+			<th>Име</th>
 			<th>Адрес</th>
 			<th style="width: 50px">Версия</th>
 		</tr>
@@ -84,7 +84,7 @@ function checkaccess(hash)
 
 <div class="modal-header">
     <a class="close" data-dismiss="modal"  data-placement="bottom">&times;</a>
-    <h4>Выберите админов</h4>
+    <h4>Избери админи</h4>
 </div>
 
 <div class="modal-body">
@@ -92,7 +92,7 @@ function checkaccess(hash)
 
 <div class="modal-footer">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-        'label'=>'Закрыть',
+        'label'=>'Затвори',
         'url'=>'#',
         'htmlOptions'=>array('data-dismiss'=>'modal'),
     )); ?>

@@ -12,27 +12,27 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle=Yii::app()->name . ' - Обновление';
+$this->pageTitle=Yii::app()->name . ' - Обновяване';
 $this->breadcrumbs=array(
-	'Обновление',
+	'Обновяване',
 );
 ?>
 
-<h2>Обновление</h2>
+<h2>Обновяване</h2>
 
 <?php if(empty($_POST['license'])): ?>
 
 	<?php echo CHtml::form(); ?>
 
-	<p><label class="checkbox"><?php echo CHtml::checkBox('license'); ?> Я принимаю условия <?php
-			echo CHtml::link('лицензионного соглашения', array('/site/license'), array('target' => '_blank')) ?></label></p>
+	<p><label class="checkbox"><?php echo CHtml::checkBox('license'); ?> Приемам условията <?php
+			echo CHtml::link('лицензионно споразумение', array('/site/license'), array('target' => '_blank')) ?></label></p>
 
-	<?php echo CHtml::submitButton('Обновить', array('class' => 'btn btn-primary')); ?><br>
+	<?php echo CHtml::submitButton('Обнови', array('class' => 'btn btn-primary')); ?><br>
 
 	<?php echo CHtml::endForm(); ?>
 
 <?php else: ?>
 
-	<div class="alert alert-success">Обновление прошло успешно!</div>
+	<div class="alert alert-success">Обновяването е успешно!</div>
 
 <?php endif; ?>

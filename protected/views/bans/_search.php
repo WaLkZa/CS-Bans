@@ -31,15 +31,17 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 
     <?php echo $form->textFieldRow($model,'player_ip',array('maxlength'=>15)); ?>
 
+    <?php echo $form->textFieldRow($model,'admin_nick',array('maxlength'=>100)); ?>
+
 	<?php echo $form->textFieldRow($model,'ban_reason',array('maxlength'=>100)); ?>
 
-	<label for="Bans_ban_created" class="required">Дата бана</label>
+	<label for="Bans_ban_created" class="required">Баннат на</label>
 	<?php 
 		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 				'model' => $model,
 				'id' => 'ban_created',
 				'attribute' => 'ban_created',
-				'language' => 'ru',
+				'language' => 'bg',
 				'i18nScriptFile' => 'jquery-ui-i18n.min.js',
 				'htmlOptions' => array(
 					'id' => 'ban_created',
@@ -56,7 +58,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         <?php $this->widget('bootstrap.widgets.TbButton', array( 
             'buttonType'=>'submit', 
             'type'=>'primary', 
-            'label'=>'Искать', 
+            'label'=>'Търси',
         )); ?>
     </div> 
 

@@ -12,15 +12,15 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name . ' :: Редактировать файл';
+$this->pageTitle = Yii::app()->name . ' :: Редактиране на файл';
 $this->breadcrumbs=array(
-	'Банлист'=>array('/bans/index'),
+	'Бан листа'=>array('/bans/index'),
 	'Бан №'.$model->bid=>array('/bans/view','id'=>$model->bid),
-	'Редактировать файл пользователя '.$model->name
+	'Редактиране на клиентски файл '.$model->name
 );
 ?>
 
-<h2>Редактировать файл <?php echo $model->demo_real; ?></h2>
+<h2>Редактиране на файл <?php echo $model->demo_real; ?></h2>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'files-form',
@@ -39,7 +39,7 @@ $this->breadcrumbs=array(
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>'Сохранить',
+			'label'=>'Запази',
 		)); ?>
 	</div>
 

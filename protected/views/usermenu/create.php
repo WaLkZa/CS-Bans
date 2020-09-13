@@ -12,19 +12,19 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Добавить ссылку';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Добавяне на линк';
 $this->breadcrumbs=array(
-	'Админцентр'=> array('/admin/index'),
-	'Главное меню'=>array('index'),
-	'Добавить ссылку',
+	'Админ панел'=> array('/admin/index'),
+	'Главно меню'=>array('index'),
+	'Добавяне на линк',
 );
 
 $this->menu=array(
-	array('label'=>'Управление ссылками','url'=>array('admin')),
+	array('label'=>'Управление на линкове','url'=>array('admin')),
 );
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webmainmenu'));
 ?>
 
-<h2>Добавить ссылку</h2>
+<h2>Добавяне на линк</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

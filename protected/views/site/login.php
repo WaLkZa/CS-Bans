@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 
 <h2>Вход</h2>
 
-<p>Пожалуйста, заполните следующую форму:</p>
+<p>Моля, попълнете следната форма:</p>
 
 <div class="form">
 
@@ -33,7 +33,7 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note">Поля отмеченные <span class="required">*</span> обязательны для заполнения.</p>
+	<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 
 	<?php echo $form->textFieldRow($model,'username'); ?>
 
@@ -43,7 +43,7 @@ $this->breadcrumbs=array(
 
 	<?php if(CCaptcha::checkRequirements() && Yii::app()->request->cookies['captcha_auth']): ?>
 		<div class="control-group">
-			<?php echo CHtml::label('Проверочный код', 'verify', array('class'=>'control-label'))?>
+			<?php echo CHtml::label('Код за потвърждение', 'verify', array('class'=>'control-label'))?>
 			<div class="controls">
 				<p><?php echo CHtml::textField('verify')?></p>
 				<?php $this->widget('ext.kcaptcha.KCaptcha', array('showRefreshButton' => FALSE)); ?>
@@ -55,7 +55,7 @@ $this->breadcrumbs=array(
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
             'buttonType'=>'submit',
             'type'=>'primary',
-            'label'=>'Войти',
+            'label'=>'Вход',
         )); ?>
 	</div>
 

@@ -12,19 +12,19 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Добавить причину бана';
-$this->pageTitle = Yii::app()->name .' :: Админцентр - ' . $page;
+$page = 'Добави причина за бан';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - ' . $page;
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Причины банов'=>array('/admin/reasons'),
+	'Админ панел'=>array('/admin/index'),
+	'Причини за бан'=>array('/admin/reasons'),
 	$page
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servreasons'));
 ?>
 
-<h2>Добавить группу причин</h2>
+<h2>Добави група от причини</h2>
 
 <?php
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
@@ -33,7 +33,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 ));
 ?>
 
-	<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+	<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -45,10 +45,10 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Добавить' : 'Сохранить',
+			'label'=>$model->isNewRecord ? 'Добави' : 'Запази',
 		)); ?>
 		<?php echo CHtml::link(
-				'Отмена',
+				'Отмeни',
 				Yii::app()->createUrl('/admin/reasons'),
 				array(
 					'class' => 'btn btn-danger'

@@ -12,22 +12,22 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Веб уровни';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Уеб права';
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Веб уровни'=>array('admin'),
-	'Редактировать уровень #' . $model->level
+	'Админ панел'=>array('/admin/index'),
+	'Уеб права'=>array('admin'),
+	'Редактиране на права #' . $model->level
 );
 
 $this->menu=array(
-	array('label'=>'Админцентр','url'=>array('index')),
-	array('label'=>'Уровни','url'=>array('admin')),
+	array('label'=>'Админ панел','url'=>array('index')),
+	array('label'=>'Права','url'=>array('admin')),
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webadmlevel'));
 ?>
 
-<h2>Редактировать уровень #<?php echo $model->level; ?></h2>
+<h2>Редактиране на права #<?php echo $model->level; ?></h2>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

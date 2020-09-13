@@ -12,8 +12,8 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Банлист';
-$this->pageTitle = Yii::app()->name . ' - ' . $page . ' - Детали бана ' . $model->player_nick;
+$page = 'Бан листа';
+$this->pageTitle = Yii::app()->name . ' - ' . $page . ' - Детайли относно бана ' . $model->player_nick;
 $this->breadcrumbs=array(
 	$page=>array('index'),
 	$model->player_nick,
@@ -29,14 +29,14 @@ if($geo) {
 }
 
 if($model->ban_length == '-1') {
-    $length = 'Разбанен';
+    $length = 'Ънбаннат';
 } else {
     $length = Prefs::date2word($model->ban_length);
     if($model->unbanned) {
-        $length .= '(Истек)';
+        $length .= '(Изтекъл)';
     } elseif(Yii::app()->hasModule('billing')) {
         $length .= CHtml::link(
-            'Купить разбан',
+            'Купи ънбан',
 			array('/billing/unban', 'id' => $model->primaryKey),
 			array('class' => 'btn btn-mini btn-success pull-right')
         );
@@ -44,7 +44,7 @@ if($model->ban_length == '-1') {
 }
 ?>
 
-<h2>Подробности бана <i><?php echo CHtml::encode($model->player_nick); ?></i></h2>
+<h2>Подробности за бана <i><?php echo CHtml::encode($model->player_nick); ?></i></h2>
 <div style="float: right">
 	<?php
 	if(Webadmins::checkAccess('bans_edit', $model->admin_nick)):
@@ -53,7 +53,7 @@ if($model->ban_length == '-1') {
 		$this->createUrl('/bans/update', array('id' => $model->bid)),
 		array(
 			'rel' => 'tooltip',
-			'title' => 'Редактировать',
+			'title' => 'Промени',
 		)
 	);
 	endif;
@@ -66,12 +66,12 @@ if($model->ban_length == '-1') {
 		$this->createUrl('/bans/unban', array('id' => $model->bid)),
 		array(
 			'type' => 'post',
-			'beforeSend' => 'function() {if(!confirm("Разбанить игрока '.$model->player_nick.'?")) {return false;} }',
+			'beforeSend' => 'function() {if(!confirm("Премахни бана на '.$model->player_nick.'?")) {return false;} }',
 			'success' => 'function(data) {alert(data); document.location.href="'.$this->createUrl('/bans/index').'";}'
 		),
 		array(
 			'rel' => 'tooltip',
-			'title' => 'Разбанить',
+			'title' => 'Ънбанни',
 		)
 	);
 	endif;
@@ -84,12 +84,12 @@ if($model->ban_length == '-1') {
 		$this->createUrl('/bans/delete', array('id' => $model->bid, 'ajax' => 1)),
 		array(
 			'type' => 'post',
-			'beforeSend' => 'function() {if(!confirm("Удалить бан?")) {return false;} }',
-			'success' => 'function() {alert("Бан удален"); document.location.href="'.$this->createUrl('/bans/index').'"}'
+			'beforeSend' => 'function() {if(!confirm("Сигурен ли си, че искаш да изтриеш бана?")) {return false;} }',
+			'success' => 'function() {alert("Банът е изтрит."); document.location.href="'.$this->createUrl('/bans/index').'"}'
 		),
 		array(
 			'rel' => 'tooltip',
-			'title' => 'Удалить бан',
+			'title' => 'Изтриване на бан',
 		)
 	);
 	endif;
@@ -110,7 +110,7 @@ if($model->ban_length == '-1') {
 					array(
 						'onclick' => '$("#modal-map").modal("show");',
 						'rel' => 'tooltip',
-						'title' => 'Подробности IP адреса'
+						'title' => 'Подробности за IP адреса'
 					)
 				) : $model->player_ip,
 			'visible' => ($ipaccess)
@@ -144,7 +144,7 @@ if($model->ban_length == '-1') {
 <hr>
 <p class="text-success">
 	<i class="icon-calendar"></i>
-	История банов
+	Всички банове на играча
 </p>
 <?php
 $this->widget('bootstrap.widgets.TbGridView',array(
@@ -187,7 +187,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 				"Разбанен"
 					:
 				Prefs::date2word($data->ban_length) .
-				($data->expired == 1 ? " (истек)" : "")'
+				($data->expired == 1 ? " (изтекъл)" : "")'
 		),
 	),
 ));
@@ -195,7 +195,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 <hr>
 <p class="text-success">
 	<i class="icon-comment"></i>
-	Комментарии
+	Коментари
 </p>
 
 <?php
@@ -219,7 +219,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 		),
 
 		array(
-			'header' => 'Комментарий',
+			'header' => 'Коментар',
 			'value'=>'$data->comment',
 		),
 
@@ -243,19 +243,19 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 
 		array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-			'header' => 'Действия',
+			'header' => 'Действие',
             'template'=>'{update} {delete}',
             'buttons'=>array
             (
                 'delete' => array
                 (
-                    'label'=>'Удалить',
+                    'label'=>'Изтрий',
                     'icon'=>'trash',
                     'url'=>'Yii::app()->createUrl("/comments/delete", array("id"=>$data->id))',
                 ),
 				'update' => array
                 (
-                    'label'=>'Редактировать',
+                    'label'=>'Редактирай',
                     'icon'=>'pencil',
                     'url'=>'Yii::app()->createUrl("/comments/update", array("id"=>$data->id, "bid" => $data->bid))',
                 ),
@@ -273,7 +273,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 if(Yii::app()->config->use_comment && (!Yii::app()->user->isGuest || Yii::app()->config->comment_all)):?>
 	<div style="width: auto; margin: 0 auto">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Добавить комментарий',
+			'label'=>'Добави коментар',
 			'buttonType' => 'button',
 			'size'=>'small', // null, 'large', 'small' or 'mini'
 			'htmlOptions' => array('onclick' => '$("#addcomment").slideToggle("slow");'),
@@ -349,7 +349,7 @@ if(Yii::app()->config->use_comment && (!Yii::app()->user->isGuest || Yii::app()-
 			<?php endif?>
 			<tr>
 				<td colspan="2">
-					<?php echo CHtml::submitButton($label = 'Сохранить'); ?>
+					<?php echo CHtml::submitButton($label = 'Запази'); ?>
 				</td>
 			</tr>
 		</table>
@@ -359,7 +359,7 @@ if(Yii::app()->config->use_comment && (!Yii::app()->user->isGuest || Yii::app()-
 <hr />
 <p class="text-success">
 	<i class="icon-folder-open"></i>
-	Файлы
+	Файлове
 </p>
 
 <?php
@@ -384,7 +384,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 		),
 
 		array(
-			'header' => 'Комментарий',
+			'header' => 'Коментари',
 			'value'=>'$data->comment',
 		),
 
@@ -404,20 +404,20 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             (
                 'download' => array
                 (
-                    'label'=>'Скачать',
+                    'label'=>'Изтегли',
                     'icon'=>'download-alt',
                     'url'=>'Yii::app()->createUrl("/files/download", array("id"=>$data->id))',
                 ),
                 'update' => array
                 (
-                    'label'=>'Редактировать',
+                    'label'=>'Редактирай',
                     'icon'=>'pencil',
                     'url'=>'Yii::app()->createUrl("/files/update", array("id"=>$data->id))',
 					'visible' => 'Webadmins::checkAccess(\'bans_edit\', $data->name)'
                 ),
 				'delete' => array
                 (
-                    'label'=>'Удалить',
+                    'label'=>'Изтрий',
                     'icon'=>'trash',
                     'url'=>'Yii::app()->createUrl("/files/delete", array("id"=>$data->id, "YII_CSRF_TOKEN" => Yii::app()->request->csrfToken))',
 					'visible' => 'Webadmins::checkAccess(\'bans_edit\', $data->name)'
@@ -434,7 +434,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 <?php if(Yii::app()->config->use_demo && (!Yii::app()->user->isGuest || Yii::app()->config->demo_all)):?>
 	<div style="width: auto; margin: 0 auto">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Добавить файл',
+			'label'=>'Добави файл',
 			'buttonType' => 'button',
 			'size'=>'small', // null, 'large', 'small' or 'mini'
 			'htmlOptions' => array('onclick' => '$(".addfile").slideToggle("slow");'),
@@ -516,7 +516,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 			<?php endif?>
 			<tr>
 				<td colspan="2">
-					<?php echo CHtml::submitButton('Сохранить'); ?>
+					<?php echo CHtml::submitButton('Запази'); ?>
 				</td>
 			</tr>
 		</table>
@@ -533,7 +533,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-	<h3>Информация об IP "<?php echo $model->player_ip ?>"</h3>
+	<h3>Информация за IP "<?php echo $model->player_ip ?>"</h3>
 </div>
 <div class="modal-body" style="min-height: 460px">
 	<div id="map" style="width:800px; height:400px; marg: 0 auto"></div>
@@ -541,16 +541,16 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 		<b>Страна: </b>
 		<?php echo $geo['country'] ?>
 		<br>
-		<b>Регион: </b>
+		<b>Област: </b>
 		<?php echo $geo['region'] ?>
 		<br>
-		<b>Город: </b>
+		<b>Град: </b>
 		<?php echo $geo['city'] ?>
 	</div>
 </div>
 <div class="modal-footer">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-        'label'=>'Закрыть',
+        'label'=>'Затвори',
         'url'=>'#',
         'htmlOptions'=>array('data-dismiss'=>'modal'),
     )); ?>

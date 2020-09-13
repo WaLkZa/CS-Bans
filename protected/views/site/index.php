@@ -29,13 +29,13 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit',array(
 	)
 )); ?>
 
-<p><?php echo CHtml::encode(Yii::app()->name); ?> установлен.</p>
+<p><?php echo CHtml::encode(Yii::app()->name); ?> инсталиран.</p>
 
 <?php $this->endWidget(); ?>
 
 <div class="row-fluid">
 	<div class="span6">
-		<div class="alert alert-info"><h4>Последние 10 банов</h4></div>
+		<div class="alert alert-info"><h4>Последните 10 бана</h4></div>
 		<?php
 		$this->widget('bootstrap.widgets.TbGridView', array(
 			'dataProvider'=>$bans,
@@ -70,12 +70,12 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit',array(
 	// Информация с серверов собирается аяксом. Функция написана выше
 	?>
 	<div class="span6">
-		<div class="alert alert-info"><h4>Сервера</h4></div>
+		<div class="alert alert-info"><h4>Сървъри</h4></div>
 		<table class="table table-bordered table-condensed table-striped">
 			<thead>
 				<tr>
-					<th>Имя сервера</th>
-					<th>Игроки</th>
+					<th>Име на сървъра</th>
+					<th>Играчи</th>
 					<th>Карта</th>
 				</tr>
 			</thead>
@@ -114,7 +114,7 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit',array(
 				var elem = $('#server<?php echo intval($server['id'])?>');
 				if(!info)
 				{
-					ret = '<td colspan="3"><?php echo $server['hostname']?> <b>Не отвечает</b></td>';
+					ret = '<td colspan="3"><?php echo $server['hostname']?> <b>Без отговор</b></td>';
 					elem.addClass('error');
 				}
 				else

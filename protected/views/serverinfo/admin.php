@@ -12,16 +12,16 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Управление серверами';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Управление на сървъри';
 
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Управление серверами',
+	'Админ панел'=>array('/admin/index'),
+	'Управление на сървъри',
 );
 
 $this->menu=array(
-	array('label'=>'Админцентр', 'url'=>array('/admin/index')),
-	array('label'=>'Добавить сервер', 'url'=>array('create')),
+	array('label'=>'Админ панел', 'url'=>array('/admin/index')),
+	array('label'=>'Добави сървър', 'url'=>array('create')),
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servsettings'));
@@ -40,7 +40,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h2>Управление серверами</h2>
+<h2>Управление на сървъри</h2>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'type'=>'striped bordered condensed',

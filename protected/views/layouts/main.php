@@ -37,20 +37,20 @@
 			'htmlOptions'=>array('class'=>'pull-right'),
 			'encodeLabel' => false,
             'items'=>array(
-                array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest,
+                array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest,
 					'items' => array(
 						array('label' => '<p><form method="post" action="'.Yii::app()->createUrl('/site/login').'" accept-charset="UTF-8">
-							<input style="margin-bottom: 15px;" type="text" placeholder="Логин" id="LoginForm_username" name="LoginForm[username]">
-							<input style="margin-bottom: 15px;" type="password" placeholder="Пароль" id="LoginForm_password" name="LoginForm[password]">
+							<input style="margin-bottom: 15px;" type="text" placeholder="Име" id="LoginForm_username" name="LoginForm[username]">
+							<input style="margin-bottom: 15px;" type="password" placeholder="Парола" id="LoginForm_password" name="LoginForm[password]">
 							<input type="hidden" value="'.Yii::app()->request->csrfToken.'" name="'.Yii::app()->request->csrfTokenName.'" />
-							<input class="btn btn-primary btn-block" name="yt0" type="submit" value="Войти">
+							<input class="btn btn-primary btn-block" name="yt0" type="submit" value="Вход">
 						</form></p>', )
 					)),
                 array('label'=>Yii::app()->user->name, 'url'=>'#', 'visible'=>!Yii::app()->user->isGuest,
 					'items' => array(
-						array('label'=>'Админцентр', 'url'=>array('/admin'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Админ панел', 'url'=>array('/admin'), 'visible'=>!Yii::app()->user->isGuest),
 						'---',
-						array('label'=>'Выйти', 'url'=>array('/site/logout'), 'icon'=>'icon-off'),
+						array('label'=>'Изход', 'url'=>array('/site/logout'), 'icon'=>'icon-off'),
 					))
             ),
         ),
@@ -76,14 +76,14 @@
 			&copy; <?php echo date('Y'); ?> 
 			<?php echo CHtml::link('Craft-Soft Studio', 'http://craft-soft.ru', array('target' => '_blank'));  ?>
 			<br />
-			All Rights Reserved.
+			Всички права запазени.
 			<br />
 			<br />
 		</p>
 	</div>
 </div>
 <div id="loading">
-	<h1>Загрузка</h1>
+	<h1>Зарежда се</h1>
 	<div class="circle"></div>
 	<div class="circle1"></div>
 </div>

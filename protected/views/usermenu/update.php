@@ -12,21 +12,21 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Редактировать ссылку ';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Редактиране на линк ';
 $this->breadcrumbs=array(
-	'Админцентр'=> array('/admin/index'),
-	'Главное меню'=>array('admin'),
-	'Ссылка № '.$model->id=>array('view','id'=>$model->id),
-	'Редактировать',
+	'Админ панел'=> array('/admin/index'),
+	'Главно меню'=>array('admin'),
+	'Линк № '.$model->id=>array('view','id'=>$model->id),
+	'Редактирай',
 );
 
 $this->menu=array(
-	array('label'=>'Добавить ссылку','url'=>array('create')),
-	array('label'=>'Управление ссылками','url'=>array('admin')),
+	array('label'=>'Добави линк','url'=>array('create')),
+	array('label'=>'Управление на линкове','url'=>array('admin')),
 );
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webmainmenu'));
 ?>
 
-<h2>Редактировать ссылку № <?php echo $model->id; ?></h2>
+<h2>Редактирай линк № <?php echo $model->id; ?></h2>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

@@ -59,7 +59,7 @@ $array2 = Levels::getValues(TRUE);
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Добавить' : 'Сохранить',
+			'label'=>$model->isNewRecord ? 'Добави' : 'Запази',
 		)); ?>
 	</div>
 

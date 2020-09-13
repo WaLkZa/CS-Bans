@@ -12,22 +12,22 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Редактировать комментарий';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Редактиране на коментари';
 $this->breadcrumbs=array(
-	'Банлист'=>array('/bans/index'),
+	'Бан листа'=>array('/bans/index'),
 	'Бан №'.$model->bid=>array('/bans/view','id'=>$model->bid),
-	'Редактировать комментарий пользователя ' . $model->name,
+	'Редактиране на коментар ' . $model->name,
 );
 ?>
 
-<h2>Редактировать комментарий №<?php echo $model->id; ?></h2>
+<h2>Редактиране на коментар №<?php echo $model->id; ?></h2>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'comments-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+	<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -41,7 +41,7 @@ $this->breadcrumbs=array(
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>'Сохранить',
+			'label'=>'Запази',
 		)); ?>
 	</div>
 

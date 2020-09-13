@@ -12,19 +12,19 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Главное меню';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Главно меню';
 $this->breadcrumbs=array(
-	'Админцентр' => array('/admin/index'),
-	'Главное меню'
+	'Админ панел' => array('/admin/index'),
+	'Главно меню'
 );
 
 $this->menu=array(
-	array('label'=>'Добавить ссылку','url'=>array('create')),
+	array('label'=>'Добави линк','url'=>array('create')),
 );
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webmainmenu'));
 ?>
 
-<h2>Управление ссылками</h2>
+<h2>Управление на линкове</h2>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'usermenu-grid',

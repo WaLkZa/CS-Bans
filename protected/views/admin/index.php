@@ -12,7 +12,7 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Админцентр';
+$page = 'Админ панел';
 $this->pageTitle = Yii::app()->name . ' - ' . $page;
 
 $this->breadcrumbs=array(
@@ -24,11 +24,11 @@ $.post('".$this->createUrl('version')."', {'version': 1}, function(data){
 	$('#version').html(data);
 });
 $('.bdaction').click(function(){
-	if(!confirm('Вы подтверждаете свои действия?'))
+	if(!confirm('Потвърждавате ли това действие?'))
 	{
 		return false;
 	}
-	if(this.id == 'truncatebans' && !confirm('Все баны будут удалены. Вы точно уверены?'))
+	if(this.id == 'truncatebans' && !confirm('Всички банове ще бъдат изтрити. Сигурни ли сте?'))
 	{
 		return false;
 	}
@@ -40,19 +40,19 @@ $('.bdaction').click(function(){
 $this->renderPartial('/admin/mainmenu', array('active' =>'main', 'activebtn' => 'admsystem'));
 $sysprefs = Prefs::sysprefs();
 ?>
-<h2>Информация о системе</h2>
+<h2>Информация за системата</h2>
 <div class="container">
   <div class="row-fluid">
     <div class="span8">
 		<table class="table table-bordered table-condensed">
 			<tr>
 				<td class="info" colspan="2">
-					<b>Настройки сервера</b>
+					<b>Настройки на сървъра</b>
 				</td>
 			</tr>
 			<tr>
 				<td style="width: 200px">
-					Версия сайта
+					Версия на сайта
 				</td>
 				<td id="version">
 					<?php echo Yii::app()->params['Version'] ?> <?php echo CHtml::image(Yii::app()->baseUrl . '/images/loading.gif'); ?>
@@ -97,7 +97,7 @@ $sysprefs = Prefs::sysprefs();
 				<tr class="odd">
 					<td>
 						<div class="pull-left muted">
-							<b>Размер базы данных</b>
+							<b>Размер на базата данни</b>
 						</div>
 						<div class="pull-right">
 							<?php echo Prefs::db_size(); ?>
@@ -107,7 +107,7 @@ $sysprefs = Prefs::sysprefs();
 				<tr class="odd">
 					<td>
 						<div class="pull-left muted">
-							<b>Кол-во банов в базе</b>
+							<b>Количество банове в базата</b>
 						</div>
 						<div class="pull-right">
 							<?php echo $sysinfo['bancount']; ?>
@@ -117,7 +117,7 @@ $sysprefs = Prefs::sysprefs();
 				<tr class="odd">
 					<td>
 						<div class="pull-left muted">
-							<b>Активные баны</b>
+							<b>Активни банове</b>
 						</div>
 						<div class="pull-right">
 							<?php echo $sysinfo['bancount']; ?>
@@ -127,7 +127,7 @@ $sysprefs = Prefs::sysprefs();
 				<tr class="odd">
 					<td>
 						<div class="pull-left muted">
-							<b>Комментарии</b>
+							<b>Коментари</b>
 						</div>
 						<div class="pull-right">
 							<?php echo $sysinfo['commentscount']; ?>
@@ -137,7 +137,7 @@ $sysprefs = Prefs::sysprefs();
 				<tr class="odd">
 					<td>
 						<div class="pull-left muted">
-							<b>Файлы</b>
+							<b>Файлове</b>
 						</div>
 						<div class="pull-right">
 							<?php echo $sysinfo['filescount']; ?>
@@ -156,12 +156,12 @@ $sysprefs = Prefs::sysprefs();
 			<tbody>
 				<tr class="odd">
 					<td>
-						<input type="button" class="btn btn-small btn-info bdaction span12" id="clearcache" value="Очистить кеш">
+						<input type="button" class="btn btn-small btn-info bdaction span12" id="clearcache" value="Почистване на кеша">
 					</td>
 				</tr>
 				<tr class="odd">
 					<td>
-						<input type="button" class="btn btn-small btn-info bdaction span12" id="optimizedb" value="Оптимизация базы">
+						<input type="button" class="btn btn-small btn-info bdaction span12" id="optimizedb" value="Оптимизация на базата данни">
 					</td>
 				</tr>
 				<!--
@@ -178,7 +178,7 @@ $sysprefs = Prefs::sysprefs();
 				-->
 				<tr class="odd">
 					<td>
-						<input type="button" class="btn btn-small btn-info bdaction span12" id="truncatebans" value="Очистить банлист">
+						<input type="button" class="btn btn-small btn-info bdaction span12" id="truncatebans" value="Изчисти бан листата">
 					</td>
 				</tr>
 			</tbody>

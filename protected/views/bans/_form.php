@@ -56,7 +56,7 @@ if(!$model->isNewRecord)
 }
 ?>
 
-<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 <fieldset>
 	<?php echo $form->errorSummary($model); ?>
 
@@ -86,10 +86,10 @@ if(!$model->isNewRecord)
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Создать' : 'Обновить'));
+			'label'=>$model->isNewRecord ? 'Създай' : 'Обнови'));
 		?>
 		<?php echo CHtml::link(
-				'Отмена',
+				'Нулирай',
 				Yii::app()->createUrl('/admin/index'),
 				array(
 					'class' => 'btn btn-danger'

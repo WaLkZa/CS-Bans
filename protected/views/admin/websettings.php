@@ -12,17 +12,17 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Настройки системы';
-$this->pageTitle = Yii::app()->name . ' :: Админцентр - ' . $page;
+$page = 'Настройки на системата';
+$this->pageTitle = Yii::app()->name . ' :: Админ панел - ' . $page;
 
 $this->breadcrumbs=array(
-	'Админцентр' => array('/admin/index'),
+	'Админ панел' => array('/admin/index'),
 	$page,
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'websettings'));
 ?>
-<h2>Настройки системы</h2>
+<h2>Настройки на системата</h2>
 <?php
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'settings-form',
@@ -30,7 +30,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'enableAjaxValidation'=>true,
 ));
 ?>
-<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 <fieldset>
 	<legend>Система</legend>
 	<?php echo $form->errorSummary($model); ?>
@@ -46,28 +46,28 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	<?php //echo $form->textFieldRow($model, 'banner_url'); ?>
 	<?php echo $form->dropDownListRow($model, 'design', $themes); ?>
 	<?php echo $form->dropDownListRow($model, 'start_page', array(
-		'/site/index' => 'Главная',
-		'/bans/index' => 'Банлист',
-		'/serverinfo/index' => 'Серверы',
-		'/amxadmins/index' => 'Админы',
+		'/site/index' => 'Начало',
+		'/bans/index' => 'Бан листа',
+		'/serverinfo/index' => 'Сървъри',
+		'/amxadmins/index' => 'Админи',
 	));
 	?>
-	<legend>Комментарии</legend>
+	<legend>Коментари</legend>
 	<?php echo $form->checkBoxRow($model, 'use_comment'); ?>
 	<?php echo $form->checkBoxRow($model, 'comment_all'); ?>
-	<legend>Файлы</legend>
+	<legend>Файлове</legend>
 	<?php echo $form->checkBoxRow($model, 'use_demo'); ?>
 	<?php echo $form->checkBoxRow($model, 'demo_all'); ?>
 	<?php echo $form->textFieldRow($model, 'file_type'); ?>
-	<legend>Банлист</legend>
+	<legend>Бан листа</legend>
 	<?php echo $form->textFieldRow($model, 'bans_per_page'); ?>
 	<?php echo $form->checkBoxRow($model, 'show_comment_count'); ?>
 	<?php echo $form->checkBoxRow($model, 'show_demo_count'); ?>
 	<?php echo $form->checkBoxRow($model, 'show_kick_count'); ?>
 </fieldset>
 <div class="form-actions">
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Сохранить')); ?>
-    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Сбросить')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Запазване')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Нулиране')); ?>
 </div>
 
 <?php $this->endWidget(); ?>

@@ -12,20 +12,20 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name . ' :: Админцентр - Добавление AmxModX админа';
+$this->pageTitle = Yii::app()->name . ' :: Админ панел - Добавяне на AmxModX админ';
 $this->breadcrumbs = array(
-	'Админцентр' => array('/admin/index'),
-	'AmxModX админы' => array('admin'),
-	'Добавление AmxModX админа'
+	'Админ панел' => array('/admin/index'),
+	'AmxModX админи' => array('admin'),
+	'Добавяне на AmxModX админ'
 );
 
 $this->renderPartial('/admin/mainmenu', array('active' =>'server', 'activebtn' => 'servamxadmins'));
 
 $this->menu=array(
-	array('label'=>'Управление админами', 'url'=>array('admin')),
+	array('label'=>'Управление на админи', 'url'=>array('admin')),
 );
 ?>
 
-<h2>Добавить AmxModX админа</h2>
+<h2>Добави AmxModX админ</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model, 'webadmins' => new Webadmins)); ?>

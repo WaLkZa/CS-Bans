@@ -12,7 +12,7 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$page = 'Банлист';
+$page = 'Бан листа';
 $this->pageTitle = Yii::app()->name . ' - ' . $page;
 
 $this->breadcrumbs=array(
@@ -45,18 +45,17 @@ $('.search-form form').submit(function(){
 ?>
 
 <div class="alert alert-<?php echo $check ? 'error' : 'success' ?>">
-	<a href="#" class="close" data-dismiss="alert">&times;</a>
 	<?php 
 	$ip = $_SERVER['REMOTE_ADDR'];
 	echo $check
 			?
-		'<strong>Внимание!</strong> Ваш IP (<strong>'.$ip.'</strong>) забанен'
+		'<strong>Внимание!</strong> Вашето IP (<strong>'.$ip.'</strong>) е забранено'
 			:
-		'Ваш IP (<strong>'.$ip.'</strong>) не забанен'
+		'Вашето IP (<strong>'.$ip.'</strong>) не е забранено'
 	?>
 </div>
 
-<?php echo CHtml::link('Поиск','#',array('class'=>'search-button btn btn-small')); ?>
+<?php echo CHtml::link('Търси','#',array('class'=>'search-button btn btn-small')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
     'model'=>$model,
@@ -69,7 +68,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'bans-grid',
     'dataProvider'=>isset($_GET['Bans']) ? $model->search() : $dataProvider,
 	//'template' => '{items} {pager}',
-	'summaryText' => 'Показано с {start} по {end} банов из {count}. Страница {page} из {pages}',
+	'summaryText' => 'Резултати от {start} до {end} от общо {count} бана. Страница {page} от {pages}',
 	'htmlOptions' => array(
 		'style' => 'width: 100%'
 	),
@@ -81,6 +80,8 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 	'pager' => array(
 		'class'=>'bootstrap.widgets.TbPager',
 		'displayFirstAndLast' => true,
+        'firstPageLabel' => 'Първа',
+        'lastPageLabel' => 'Последна',
 	),
     'columns'=>array(
 
@@ -93,9 +94,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 			'header' => 'Ник',
 			'type' => 'raw',
 			'value' => '$data->country . " " . CHtml::encode(mb_substr($data->player_nick, 0, 18, "UTF-8"))',
-			'htmlOptions' => array(
-				'style' => 'width: 180px'
-			)
 		),
 
 		array(
@@ -105,31 +103,15 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 
 		array(
 			'header' => 'Причина',
-			'value' => 'mb_strlen($data->ban_reason, "UTF-8") > 25 ? mb_substr($data->ban_reason, 0, 25, "UTF-8") . "..." : $data->ban_reason'
+			'value' => '$data->ban_reason'
 		),
 
 		array(
-			'header' => 'Срок',
-			'value' => '$data->ban_length == \'-1\' ? \'Разбанен\' : Prefs::date2word($data->ban_length) . ($data->expired == 1 ? \' (истек)\' : \'\')',
-			'htmlOptions' => array('style' => 'width:130px'),
+			'header' => 'Продължителност',
+			'value' => '$data->ban_length == \'-1\' ? \'Ънбаннат\' : Prefs::date2word($data->ban_length)',
 		),
-
 		array(
-			'header' => 'Комментарии',
-			'value'=>'$data->commentsCount',
-			'htmlOptions' => array('style'=>'text-align: center'),
-			'visible' => Yii::app()->config->show_comment_count,
-		),
-
-		array(
-			'header' => 'Файлы',
-			'value'=>'$data->filesCount',
-			'htmlOptions' => array('style'=>'text-align: center'),
-			'visible' => Yii::app()->config->show_demo_count,
-		),
-
-		array(
-			'header' => 'Кики',
+			'header' => 'Киквания',
 			'value' => '$data->ban_kicks',
 			'htmlOptions' => array('style'=>'text-align: center'),
 			'visible' => Yii::app()->config->show_kick_count,
@@ -151,7 +133,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h4>Подробности бана </h4>
+    <h4>Подробности за бана </h4>
 </div>
 
 <div class="modal-body" id="ban_name">
@@ -186,7 +168,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 	</tr>
 	<tr class="odd">
 		<td>
-			<b>Тип бана</b>
+			<b>Тип на бана</b>
 		</td>
 		<td id="bandetail-type">
 		</td>
@@ -200,14 +182,14 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 	</tr>
 	<tr class="odd">
 		<td>
-			<b>Дата/Время</b>
+			<b>Дата/Час</b>
 		</td>
 		<td id="bandetail-datetime">
 		</td>
 	</tr>
 	<tr class="odd">
 		<td>
-			<b>Срок</b>
+			<b>Продължителност</b>
 		</td>
 		<td id="bandetail-expired">
 		</td>
@@ -221,14 +203,14 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 	</tr>
 	<tr class="odd">
 		<td>
-			<b>Сервер</b>
+			<b>Сървър</b>
 		</td>
 		<td id="bandetail-server">
 		</td>
 	</tr>
 	<tr class="odd">
 		<td>
-			<b>Кол-во киков</b>
+			<b>Кол-во киквания</b>
 		</td>
 		<td id="bandetail-kicks">
 		</td>
@@ -236,7 +218,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 	<tr>
 		<td colspan="2" style="text-align: center">
 			<?php $this->widget('bootstrap.widgets.TbButton', array(
-				'label'=>'Показать подробности',
+				'label'=>'Покажи детайли',
 				'url'=> '#',
 				'htmlOptions'=>array('id' => 'viewban'),
 			)); ?>
@@ -249,7 +231,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 
 <div class="modal-footer">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-        'label'=>'Закрыть',
+        'label'=>'Затвори',
         'url'=>'#',
         'htmlOptions'=>array('data-dismiss'=>'modal'),
     )); ?>

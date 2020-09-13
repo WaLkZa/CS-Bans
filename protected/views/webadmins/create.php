@@ -12,20 +12,20 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-$this->pageTitle = Yii::app()->name .' :: Админцентр - Добавить WEB админа';
+$this->pageTitle = Yii::app()->name .' :: Админ панел - Добави уеб админ';
 $this->breadcrumbs=array(
-	'Админцентр'=>array('/admin/index'),
-	'Веб админы'=>array('admin'),
-	'Создать нового веб админа',
+	'Админ панел'=>array('/admin/index'),
+	'Уеб админи'=>array('admin'),
+	'Добавяне на нов уеб админ',
 );
 
 $this->menu=array(
-	array('label'=>'Админцентр', 'url'=>array('/admin/index')),
-	array('label'=>'ВЕБ админамы', 'url'=>array('admin')),
+	array('label'=>'Админ панел', 'url'=>array('/admin/index')),
+	array('label'=>'Уеб админи', 'url'=>array('admin')),
 );
 $this->renderPartial('/admin/mainmenu', array('active' =>'site', 'activebtn' => 'webadmins'));
 ?>
 
-<h2>Добавить веб админа</h2>
+<h2>Добави уеб админ</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

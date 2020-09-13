@@ -18,7 +18,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 ));
 ?>
 
-	<p class="note">Поля, отмеченные <span class="required">*</span> обязательны к заполнению.</p>
+	<p class="note">Полетата отбелязани с <span class="required">*</span> са задължителни.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -30,10 +30,10 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Создать' : 'Сохранить',
+			'label'=>$model->isNewRecord ? 'Създай' : 'Запази',
 		)); ?>
 		<?php echo CHtml::link(
-				'Отмена',
+				'Отмени',
 				Yii::app()->createUrl('/admin/reasons'),
 				array(
 					'class' => 'btn btn-danger'

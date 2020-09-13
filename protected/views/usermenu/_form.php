@@ -34,7 +34,7 @@ if($model->isNewRecord)
 		); 
 	?>
 
-	<?php echo $form->dropDownListRow($model,'activ',array('0' => 'Нет', '1' => 'Да'),array('class'=>'span5')); ?>
+	<?php echo $form->dropDownListRow($model,'activ',array('0' => 'Не', '1' => 'Да'),array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'lang_key',array('class'=>'span5','maxlength'=>64)); ?>
 
@@ -48,7 +48,7 @@ if($model->isNewRecord)
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Создать' : 'Сохранить',
+			'label'=>$model->isNewRecord ? 'Създай' : 'Запази',
 		)); ?>
 	</div>
 
