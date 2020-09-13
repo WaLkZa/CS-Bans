@@ -12,7 +12,7 @@
  * @license http://creativecommons.org/licenses/by-nc-sa/4.0/deed.ru  «Attribution-NonCommercial-ShareAlike»
  */
 
-date_default_timezone_set('Europe/Moscow');
+date_default_timezone_set('Europe/Sofia');
 
 define('ROOTPATH', __DIR__);
 
