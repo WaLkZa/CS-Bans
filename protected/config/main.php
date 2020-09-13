@@ -50,9 +50,9 @@ define('MODULES_MATCHES', implode('|', array_keys($modules)));
 // Главные параметры приложения
 return array(
 	'basePath'=>ROOTPATH . DIRECTORY_SEPARATOR . 'protected',
-	'name'=>'СS:Bans 1.3',
-	'sourceLanguage' => 'ru',
-	'language'=>'ru',
+	'name'=>'Bans',
+	'sourceLanguage' => 'bg',
+	'language'=>'bg',
 
 	// Предзагружаемые компоненты
 	'preload'=>array(
@@ -99,7 +99,8 @@ return array(
 			'urlSuffix'=>'.html',
 			'rules'=>array(
 				'/'=>'site/index',
-				
+
+                'billing/<controller:w+>/ban_list' => '<controller>/index',
 				'billing/unban/<id:\d+>' => 'billing/default/unban',
 				'billing/<controller:\w+>/<action:\w+>/<id:\d+>' => 'billing/<controller>/<action>',
                 'billing/<controller:\w+>/<action:\w+>' => 'billing/<controller>/<action>',
